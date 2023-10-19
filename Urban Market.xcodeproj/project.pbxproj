@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		060F30302AE1622D004B1120 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */; };
+		060F30342AE17C2F004B1120 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060F30332AE17C2F004B1120 /* MainScreen.swift */; };
 		06C67E212AE13D8200E9353B /* Urban_MarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C67E202AE13D8200E9353B /* Urban_MarketApp.swift */; };
 		06C67E232AE13D8200E9353B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C67E222AE13D8200E9353B /* HomeScreen.swift */; };
 		06C67E252AE13D8300E9353B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06C67E242AE13D8300E9353B /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
+		060F30332AE17C2F004B1120 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		06C67E1D2AE13D8200E9353B /* Urban Market.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Urban Market.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C67E202AE13D8200E9353B /* Urban_MarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urban_MarketApp.swift; sourceTree = "<group>"; };
 		06C67E222AE13D8200E9353B /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				06C67E222AE13D8200E9353B /* HomeScreen.swift */,
 				060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */,
+				060F30332AE17C2F004B1120 /* MainScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				060F30342AE17C2F004B1120 /* MainScreen.swift in Sources */,
 				06C67E2D2AE13D8300E9353B /* Urban_Market.xcdatamodeld in Sources */,
 				06C67E542AE143BA00E9353B /* HomeScreenViewModel.swift in Sources */,
 				06C67E2A2AE13D8300E9353B /* Persistence.swift in Sources */,

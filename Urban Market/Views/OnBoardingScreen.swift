@@ -50,8 +50,5 @@ struct OnBoardingScreen: View {
 struct OnBoardingScreen_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingScreen()
-            .previewDevice("iPhone 12")
-        OnBoardingScreen()
-            .previewDevice("iPhone 8")
     }
 }

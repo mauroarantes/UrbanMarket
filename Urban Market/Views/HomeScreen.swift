@@ -23,6 +23,7 @@ struct HomeScreen: View {
                 }
             }
         }
+        .listStyle(GroupedListStyle())
     }
 }
 
