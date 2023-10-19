@@ -18,6 +18,9 @@
 		06C67E432AE13D8300E9353B /* Urban_MarketUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C67E422AE13D8300E9353B /* Urban_MarketUITestsLaunchTests.swift */; };
 		06C67E512AE142F600E9353B /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C67E502AE142F600E9353B /* ProductModel.swift */; };
 		06C67E542AE143BA00E9353B /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C67E532AE143BA00E9353B /* HomeScreenViewModel.swift */; };
+		06C67E5A2AE15ED800E9353B /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06C67E572AE15ED800E9353B /* Raleway-Regular.ttf */; };
+		06C67E5B2AE15ED800E9353B /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06C67E582AE15ED800E9353B /* Raleway-SemiBold.ttf */; };
+		06C67E5E2AE15F9900E9353B /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06C67E5D2AE15F9900E9353B /* Raleway-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,10 @@
 		06C67E422AE13D8300E9353B /* Urban_MarketUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urban_MarketUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		06C67E502AE142F600E9353B /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		06C67E532AE143BA00E9353B /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		06C67E572AE15ED800E9353B /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		06C67E582AE15ED800E9353B /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		06C67E5C2AE15F1C00E9353B /* Urban-Market-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Urban-Market-Info.plist"; sourceTree = SOURCE_ROOT; };
+		06C67E5D2AE15F9900E9353B /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +109,8 @@
 		06C67E1F2AE13D8200E9353B /* Urban Market */ = {
 			isa = PBXGroup;
 			children = (
+				06C67E5C2AE15F1C00E9353B /* Urban-Market-Info.plist */,
+				06C67E552AE15E6F00E9353B /* Fonts */,
 				06C67E522AE1438A00E9353B /* ViewModels */,
 				06C67E4F2AE141A500E9353B /* Models */,
 				06C67E202AE13D8200E9353B /* Urban_MarketApp.swift */,
@@ -153,6 +162,16 @@
 				06C67E532AE143BA00E9353B /* HomeScreenViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		06C67E552AE15E6F00E9353B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				06C67E572AE15ED800E9353B /* Raleway-Regular.ttf */,
+				06C67E5D2AE15F9900E9353B /* Raleway-Bold.ttf */,
+				06C67E582AE15ED800E9353B /* Raleway-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +280,9 @@
 			files = (
 				06C67E282AE13D8300E9353B /* Preview Assets.xcassets in Resources */,
 				06C67E252AE13D8300E9353B /* Assets.xcassets in Resources */,
+				06C67E5A2AE15ED800E9353B /* Raleway-Regular.ttf in Resources */,
+				06C67E5E2AE15F9900E9353B /* Raleway-Bold.ttf in Resources */,
+				06C67E5B2AE15ED800E9353B /* Raleway-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +474,7 @@
 				DEVELOPMENT_TEAM = GZFLA6HU23;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Urban-Market-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -481,6 +504,7 @@
 				DEVELOPMENT_TEAM = GZFLA6HU23;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Urban-Market-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
