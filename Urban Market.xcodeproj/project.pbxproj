@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060F30302AE1622D004B1120 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */; };
 		06C67E212AE13D8200E9353B /* Urban_MarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C67E202AE13D8200E9353B /* Urban_MarketApp.swift */; };
 		06C67E232AE13D8200E9353B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C67E222AE13D8200E9353B /* HomeScreen.swift */; };
 		06C67E252AE13D8300E9353B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06C67E242AE13D8300E9353B /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
 		06C67E1D2AE13D8200E9353B /* Urban Market.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Urban Market.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C67E202AE13D8200E9353B /* Urban_MarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urban_MarketApp.swift; sourceTree = "<group>"; };
 		06C67E222AE13D8200E9353B /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -86,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		060F302E2AE161B8004B1120 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				06C67E222AE13D8200E9353B /* HomeScreen.swift */,
+				060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		06C67E142AE13D8200E9353B = {
 			isa = PBXGroup;
 			children = (
@@ -111,10 +122,10 @@
 			children = (
 				06C67E5C2AE15F1C00E9353B /* Urban-Market-Info.plist */,
 				06C67E552AE15E6F00E9353B /* Fonts */,
-				06C67E522AE1438A00E9353B /* ViewModels */,
 				06C67E4F2AE141A500E9353B /* Models */,
+				060F302E2AE161B8004B1120 /* Views */,
+				06C67E522AE1438A00E9353B /* ViewModels */,
 				06C67E202AE13D8200E9353B /* Urban_MarketApp.swift */,
-				06C67E222AE13D8200E9353B /* HomeScreen.swift */,
 				06C67E242AE13D8300E9353B /* Assets.xcassets */,
 				06C67E292AE13D8300E9353B /* Persistence.swift */,
 				06C67E2B2AE13D8300E9353B /* Urban_Market.xcdatamodeld */,
@@ -313,6 +324,7 @@
 				06C67E232AE13D8200E9353B /* HomeScreen.swift in Sources */,
 				06C67E212AE13D8200E9353B /* Urban_MarketApp.swift in Sources */,
 				06C67E512AE142F600E9353B /* ProductModel.swift in Sources */,
+				060F30302AE1622D004B1120 /* OnBoardingScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ struct Urban_MarketApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeScreen()
+            OnBoardingScreen()
         }
     }
 }
