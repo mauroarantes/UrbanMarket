@@ -35,6 +35,14 @@ struct MainScreen: View {
                                 .renderingMode(.template)
                                 .aspectRatio(contentMode: .fit)
                                 .foregroundColor(currentTab == tab ? .orange : .gray)
+                                .background(
+                                    Color.orange
+                                        .opacity(0.1)
+                                        .cornerRadius(5)
+                                        .blur(radius: 5)
+                                        .padding(-7)
+                                        .opacity(currentTab == tab ? 1 : 0)
+                                )
                                 .frame(width: 44, height: 44)
                                 .frame(maxWidth: .infinity)
                         case .Liked:
@@ -43,6 +51,14 @@ struct MainScreen: View {
                                 .renderingMode(.template)
                                 .aspectRatio(contentMode: .fit)
                                 .foregroundColor(currentTab == tab ? .orange : .gray)
+                                .background(
+                                    Color.orange
+                                        .opacity(0.1)
+                                        .cornerRadius(5)
+                                        .blur(radius: 5)
+                                        .padding(-7)
+                                        .opacity(currentTab == tab ? 1 : 0)
+                                )
                                 .frame(width: 44, height: 44)
                                 .frame(maxWidth: .infinity)
                         case .Profile:
@@ -51,6 +67,14 @@ struct MainScreen: View {
                                 .renderingMode(.template)
                                 .aspectRatio(contentMode: .fit)
                                 .foregroundColor(currentTab == tab ? .orange : .gray)
+                                .background(
+                                    Color.orange
+                                        .opacity(0.1)
+                                        .cornerRadius(5)
+                                        .blur(radius: 5)
+                                        .padding(-7)
+                                        .opacity(currentTab == tab ? 1 : 0)
+                                )
                                 .frame(width: 44, height: 44)
                                 .frame(maxWidth: .infinity)
                         case .Cart:
@@ -59,6 +83,14 @@ struct MainScreen: View {
                                 .renderingMode(.template)
                                 .aspectRatio(contentMode: .fit)
                                 .foregroundColor(currentTab == tab ? .orange : .gray)
+                                .background(
+                                    Color.orange
+                                        .opacity(0.1)
+                                        .cornerRadius(5)
+                                        .blur(radius: 5)
+                                        .padding(-7)
+                                        .opacity(currentTab == tab ? 1 : 0)
+                                )
                                 .frame(width: 44, height: 44)
                                 .frame(maxWidth: .infinity)
                         }
