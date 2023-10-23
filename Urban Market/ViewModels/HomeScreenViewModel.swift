@@ -12,6 +12,7 @@ class HomeScreenViewModel: ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
     @Published var products: [Product] = []
+    @Published var productType: ProductType = .fragances
     
     init() {
         getProducts()

@@ -14,7 +14,7 @@ struct ProductModel: Codable {
 }
 
 // MARK: - Product
-struct Product: Codable, Identifiable {
+struct Product: Codable, Identifiable, Hashable {
     let id: Int
     let title, description: String
     let price: Int
@@ -23,4 +23,13 @@ struct Product: Codable, Identifiable {
     let brand, category: String
     let thumbnail: String
     let images: [String]
+}
+
+enum ProductType: String, CaseIterable, Codable {
+    case smartphones = "smartphones"
+    case laptops = "laptops"
+    case groceries = "groceries"
+    case homeDecoration = "home-decoration"
+    case fragances = "fragrances"
+    case skincare = "skincare"
 }
