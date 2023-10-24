@@ -12,7 +12,9 @@ class HomeScreenViewModel: ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
     @Published var products: [Product] = []
-    @Published var productType: ProductType = .fragances
+    @Published var filteredProducts: [Product] = []
+    @Published var productType: ProductType = .smartphones
+    @Published var showMoreProducts = false
     
     init() {
         getProducts()
@@ -36,8 +38,25 @@ class HomeScreenViewModel: ObservableObject {
                 print("COMPLETION: \(completion)")
             } receiveValue: { [weak self] productModel in
                 self?.products = productModel.products
+                self?.filterProductsByType()
             }
             .store(in: &cancellables)
 
+    }
+    
+    func filterProductsByType() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let results = self.products
+                .lazy
+                .filter { product in
+                    product.category == self.productType.rawValue
+                }
+                .prefix(4)
+            DispatchQueue.main.async {
+                self.filteredProducts = results.compactMap({ product in
+                    product
+                })
+            }
+        }
     }
 }

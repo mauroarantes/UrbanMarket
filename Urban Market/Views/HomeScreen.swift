@@ -50,16 +50,82 @@ struct HomeScreen: View {
                     .padding(.horizontal, 25)
                 }
                 .padding(.top, 28)
+                
+                //Products Page
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 25) {
+                        ForEach(viewModel.filteredProducts) { product in
+                            ProductCardView(product: product)
+                        }
+                    }
+                    .padding(.horizontal, 25)
+                }
+                .padding(.top, 30)
+                
+                //See more button
+                
+                Button {
+                    viewModel.showMoreProducts.toggle()
+                } label: {
+                    Label {
+                        Image(systemName: "arrow.right")
+                    } icon: {
+                        Text("See more")
+                    }
+                    .font(.custom(customFont, size: 15).bold())
+                    .foregroundColor(.orange)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing)
+                .padding(.top, 10)
             }
+            .padding(.vertical)
         }
-        .padding(.vertical)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.gray.opacity(0.1))
+        .onChange(of: viewModel.productType) { _ in
+            viewModel.filterProductsByType()
+        }
+        .sheet(isPresented: $viewModel.showMoreProducts) {
+            MoreProductsScreen()
+        }
+    }
+    
+    @ViewBuilder
+    func ProductCardView(product: Product) -> some View {
+        VStack(spacing: 10) {
+            AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+                image.resizable()
+            }, placeholder: {
+                ProgressView()
+            })
+            .aspectRatio(contentMode: .fit)
+            .frame(width: getRect().width/2.5, height: getRect().width/2.5)
+            Text(product.title)
+                .font(.custom(customFont, size: 18))
+                .padding(.top)
+            Text(product.brand)
+                .font(.custom(customFont, size: 14))
+                .foregroundColor(.gray)
+            Text("£\(product.price)").bold()
+                .font(.custom(customFont, size: 16))
+                .padding(.top)
+                .foregroundColor(.orange)
+        }
+        .padding(.horizontal, 20)
+        .padding(.bottom, 22)
+        .background(
+            Color.white
+                .cornerRadius(25)
+        )
     }
     
     @ViewBuilder
     func ProductTypeView(type: String) -> some View {
         Button {
             withAnimation {
-                viewModel.productType = ProductType(rawValue: type) ?? .fragances
+                viewModel.productType = ProductType(rawValue: type) ?? .smartphones
             }
         } label: {
             Text(type.capitalized)
@@ -93,16 +159,5 @@ struct HomeScreen_Previews: PreviewProvider {
 extension View {
     func getRect() -> CGRect {
         UIScreen.main.bounds
-    }
-}
-
-extension Array {
-    func group<T: Hashable>(by key: (_ element: Element) -> T) -> [[Element]] {
-        var categories: [T: [Element]] = [:]
-        for element in self {
-            let key = key(element)
-            categories[key, default: []].append(element)
-        }
-      return categories.values.map { $0 }
     }
 }
