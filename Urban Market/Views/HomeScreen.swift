@@ -16,21 +16,23 @@ struct HomeScreen: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15) {
-                HStack(spacing: 15) {
-                    Image(systemName: "magnifyingglass")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                    TextField("Search", text: .constant(""))
-                        .disabled(true)
+                // Search bar
+                ZStack {
+                    if viewModel.searchActive {
+                        SearchBar()
+                    } else {
+                        SearchBar()
+                            .matchedGeometryEffect(id: "SEARCHBAR", in: animation)
+                    }
                 }
-                .padding(.vertical, 12)
-                .padding(.horizontal)
-                .background(
-                    Capsule()
-                        .strokeBorder(.gray, lineWidth: 0.8)
-                )
                 .frame(width: getRect().width / 1.6)
                 .padding(.horizontal, 25)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    withAnimation(.easeInOut) {
+                        viewModel.searchActive = true
+                    }
+                }
                 
                 Text("Order online\ncollect in store")
                     .font(.custom(customFont, size: 28).bold())
@@ -83,13 +85,39 @@ struct HomeScreen: View {
             .padding(.vertical)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.gray.opacity(0.1))
+        .background(Color.white)
         .onChange(of: viewModel.productType) { _ in
             viewModel.filterProductsByType()
         }
         .sheet(isPresented: $viewModel.showMoreProducts) {
             MoreProductsScreen()
         }
+        // Search View
+        .overlay(
+            ZStack {
+                if viewModel.searchActive {
+                    SearchScreen(animation: animation)
+                        .environmentObject(viewModel)
+                }
+            }
+        )
+    }
+    
+    @ViewBuilder
+    func SearchBar() -> some View {
+        HStack(spacing: 15) {
+            Image(systemName: "magnifyingglass")
+                .font(.title2)
+                .foregroundColor(.gray)
+            TextField("Search", text: .constant(""))
+                .disabled(true)
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal)
+        .background(
+            Capsule()
+                .strokeBorder(.gray, lineWidth: 0.8)
+        )
     }
     
     @ViewBuilder
@@ -113,12 +141,10 @@ struct HomeScreen: View {
                 .padding(.top)
                 .foregroundColor(.orange)
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, 10)
         .padding(.bottom, 22)
-        .background(
-            Color.white
-                .cornerRadius(25)
-        )
+        .background(Color.gray.opacity(0.1)
+                .cornerRadius(25))
     }
     
     @ViewBuilder

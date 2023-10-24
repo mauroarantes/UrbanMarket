@@ -11,13 +11,27 @@ import Combine
 class HomeScreenViewModel: ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
+    var searchCancellable: AnyCancellable?
+    
     @Published var products: [Product] = []
     @Published var filteredProducts: [Product] = []
     @Published var productType: ProductType = .smartphones
     @Published var showMoreProducts = false
+    @Published var searchText = ""
+    @Published var searchActive = false
+    @Published var searchedProducts: [Product]?
     
     init() {
         getProducts()
+        searchCancellable = $searchText.removeDuplicates()
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .sink(receiveValue: { str in
+                if str != "" {
+                    self.filterProductsBySearch()
+                } else {
+                    self.searchedProducts = nil
+                }
+            })
     }
     
     func getProducts() {
@@ -54,6 +68,21 @@ class HomeScreenViewModel: ObservableObject {
                 .prefix(4)
             DispatchQueue.main.async {
                 self.filteredProducts = results.compactMap({ product in
+                    product
+                })
+            }
+        }
+    }
+    
+    func filterProductsBySearch() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let results = self.products
+                .lazy
+                .filter { product in
+                    product.title.lowercased().contains(self.searchText.lowercased())
+                }
+            DispatchQueue.main.async {
+                self.searchedProducts = results.compactMap({ product in
                     product
                 })
             }
