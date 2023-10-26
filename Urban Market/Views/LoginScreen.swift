@@ -70,15 +70,17 @@ struct LoginScreen: View {
                     
                     // Forgot password button
                     
-                    Button {
-                        viewModel.forgotPassword()
-                    } label: {
-                        Text("Forgot password?")
-                            .font(.custom(customFont, size: 14).bold())
-                            .foregroundColor(.orange)
+                    if !viewModel.registerUser {
+                        Button {
+                            viewModel.forgotPassword(email: viewModel.currentUser.email)
+                        } label: {
+                            Text("Forgot password?")
+                                .font(.custom(customFont, size: 14).bold())
+                                .foregroundColor(.orange)
+                        }
+                        .padding(.top, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(.top, 8)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                     
                     // Login button
                     

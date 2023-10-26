@@ -61,8 +61,8 @@ class LoginScreenViewModel: ObservableObject {
         self.currentUser = user
     }
     
-    func forgotPassword() {
-        
+    func forgotPassword(email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email)
     }
     
     func signOut() {
@@ -71,10 +71,15 @@ class LoginScreenViewModel: ObservableObject {
             self.userSession = nil
             self.currentUser = User(id: "", fullName: "", email: "", password: "")
         } catch {
-            print("DEBUG: Failed to sign out user with error: \(error.localizedDescription)")        }
+            print("DEBUG: Failed to sign out user with error: \(error.localizedDescription)")
+        }
     }
     
     func delete() {
-        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Auth.auth().currentUser?.delete()
+        Firestore.firestore().collection("users").document(uid).delete()
+        self.userSession = nil
+        self.currentUser = User(id: "", fullName: "", email: "", password: "")
     }
 }

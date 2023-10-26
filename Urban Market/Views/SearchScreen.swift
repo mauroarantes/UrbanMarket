@@ -61,7 +61,7 @@ struct SearchScreen: View {
                 } else {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 0) {
-                            Text("Found \(products.count)")
+                            Text("Found \(products.count) results")
                                 .font(.custom(customFont, size: 24).bold())
                                 .padding(.vertical)
                             StaggeredGrid(columns: 2, spacing: 20, list: products) { product in

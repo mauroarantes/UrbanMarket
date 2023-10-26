@@ -74,7 +74,7 @@ struct ProfileScreen: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Button {
-                        
+                        viewModel.delete()
                     } label: {
                         Text("Delete Account")
                             .font(.custom(customFont, size: 17).bold())
