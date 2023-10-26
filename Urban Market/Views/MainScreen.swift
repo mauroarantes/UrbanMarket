@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainScreen: View {
     
+    @EnvironmentObject var viewModel: LoginScreenViewModel
     @State var currentTab: Tab = .Home
     
     var body: some View {
@@ -18,8 +19,9 @@ struct MainScreen: View {
                     .tag(Tab.Home)
                 Text("Liked")
                     .tag(Tab.Liked)
-                Text("Profile")
+                ProfileScreen()
                     .tag(Tab.Profile)
+                    .environmentObject(viewModel)
                 Text("Cart")
                     .tag(Tab.Cart)
             }

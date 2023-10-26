@@ -10,6 +10,10 @@ import SwiftUI
 let customFont = "Raleway-Regular"
 
 struct OnBoardingScreen: View {
+    
+    @EnvironmentObject var viewModel: LoginScreenViewModel
+    @State var showLoginScreen = false
+    
     var body: some View {
         VStack {
             Text("Find your\nGadget")
@@ -23,7 +27,9 @@ struct OnBoardingScreen: View {
                 .aspectRatio(contentMode: .fit)
             Spacer()
             Button {
-                
+                withAnimation {
+                    showLoginScreen = true
+                }
             } label: {
                 Text("Get started")
                     .font(.custom(customFont, size: 18))
@@ -43,6 +49,15 @@ struct OnBoardingScreen: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(
             Color.gray
+        )
+        .overlay(
+            Group {
+                if showLoginScreen {
+                    LoginScreen()
+                        .environmentObject(viewModel)
+                        .transition(.move(edge: .bottom))
+                }
+            }
         )
     }
 }
