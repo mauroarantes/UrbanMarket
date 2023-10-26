@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchScreen: View {
     
     @EnvironmentObject var viewModel: HomeScreenViewModel
+    @EnvironmentObject var sharedData: SharedDataViewModel
     
     @FocusState var startTF: Bool
     
@@ -23,6 +24,7 @@ struct SearchScreen: View {
                         viewModel.searchActive = false
                     }
                     viewModel.searchText = ""
+                    sharedData.fromSearchScreen = false
                 } label: {
                     Image(systemName: "arrow.left")
                         .font(.title2)
@@ -90,12 +92,34 @@ struct SearchScreen: View {
     @ViewBuilder
     func ProductCardView(product: Product) -> some View {
         VStack(spacing: 10) {
-            AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
-                image.resizable()
-            }, placeholder: {
-                ProgressView()
-            })
-            .aspectRatio(contentMode: .fit)
+//            AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+//                image
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//            }, placeholder: {
+//                ProgressView()
+//            })
+            ZStack {
+                if sharedData.showDetailProduct {
+                    AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .opacity(0)
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                } else {
+                    AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                    .matchedGeometryEffect(id: "\(product.id)SEARCH", in: animation)
+                }
+            }
             .frame(width: getRect().width/2.5, height: getRect().width/2.5)
             Text(product.title)
                 .font(.custom(customFont, size: 18))
@@ -112,11 +136,18 @@ struct SearchScreen: View {
         .padding(.bottom, 22)
         .background(Color.gray.opacity(0.1)
                 .cornerRadius(25))
+        .onTapGesture {
+            withAnimation(.easeInOut) {
+                sharedData.fromSearchScreen = true
+                sharedData.detailProduct = product
+                sharedData.showDetailProduct = true
+            }
+        }
     }
 }
 
 struct SearchScreen_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreen()
+        MainScreen()
     }
 }
