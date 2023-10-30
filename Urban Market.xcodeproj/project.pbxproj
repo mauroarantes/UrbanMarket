@@ -38,6 +38,7 @@
 		06CB659A2AE957E00065FE16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06CB65992AE957E00065FE16 /* GoogleService-Info.plist */; };
 		06CC5ADD2AEAA4D7007A064A /* SharedDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CC5ADC2AEAA4D7007A064A /* SharedDataViewModel.swift */; };
 		06CC5ADF2AEAA61D007A064A /* ProductDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CC5ADE2AEAA61D007A064A /* ProductDetailScreen.swift */; };
+		06CC5AE12AEABD8D007A064A /* LikedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CC5AE02AEABD8D007A064A /* LikedScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		06CB65992AE957E00065FE16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06CC5ADC2AEAA4D7007A064A /* SharedDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataViewModel.swift; sourceTree = "<group>"; };
 		06CC5ADE2AEAA61D007A064A /* ProductDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailScreen.swift; sourceTree = "<group>"; };
+		06CC5AE02AEABD8D007A064A /* LikedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				06C2843B2AE80CBC006F5422 /* CustomCorners.swift */,
 				06CB65972AE91F230065FE16 /* ProfileScreen.swift */,
 				06CC5ADE2AEAA61D007A064A /* ProductDetailScreen.swift */,
+				06CC5AE02AEABD8D007A064A /* LikedScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				06CC5ADF2AEAA61D007A064A /* ProductDetailScreen.swift in Sources */,
 				06CB65962AE91CFA0065FE16 /* UserModel.swift in Sources */,
 				060F30302AE1622D004B1120 /* OnBoardingScreen.swift in Sources */,
+				06CC5AE12AEABD8D007A064A /* LikedScreen.swift in Sources */,
 				06CB65982AE91F230065FE16 /* ProfileScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

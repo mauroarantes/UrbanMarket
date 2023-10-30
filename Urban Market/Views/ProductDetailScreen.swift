@@ -12,6 +12,7 @@ struct ProductDetailScreen: View {
     var animation: Namespace.ID
     
     @EnvironmentObject var sharedData: SharedDataViewModel
+    @EnvironmentObject var homeData: HomeScreenViewModel
     
     var body: some View {
         VStack {
@@ -29,14 +30,13 @@ struct ProductDetailScreen: View {
                     }
                     Spacer()
                     Button {
-                        
+                        addToLiked()
                     } label: {
                         Image(systemName: "heart.fill")
-//                            .renderingMode(.template)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 22, height: 22)
-                            .foregroundColor(.black.opacity(0.7))
+                            .foregroundColor(isLiked() ? .red : .black.opacity(0.7))
                     }
                 }
                 .padding()
@@ -77,7 +77,7 @@ struct ProductDetailScreen: View {
                     
                     // Add button
                     Button {
-                        
+                        addToCart()
                     } label: {
                         Text("Add to basket")
                             .font(.custom(customFont, size: 20).bold())
@@ -102,14 +102,51 @@ struct ProductDetailScreen: View {
                     .ignoresSafeArea()
             )
         }
+        .animation(.easeInOut, value: sharedData.likedProducts)
+        .animation(.easeInOut, value: sharedData.cartProducts)
         .background(Color.white.ignoresSafeArea())
+    }
+    
+    func isLiked() -> Bool {
+        return sharedData.likedProducts.contains { product in
+            return self.product.id == product.id
+        }
+    }
+    
+    func isAddedToCart() -> Bool {
+        return sharedData.cartProducts.contains { product in
+            return self.product.id == product.id
+        }
+    }
+    
+    func addToLiked() {
+        if let index = sharedData.likedProducts.firstIndex(where: { product in
+            return self.product.id == product.id
+        }) {
+            //Remove
+            sharedData.likedProducts.remove(at: index)
+        } else {
+            //Add
+            sharedData.likedProducts.append(product)
+        }
+    }
+    
+    func addToCart() {
+        if let index = sharedData.cartProducts.firstIndex(where: { product in
+            return self.product.id == product.id
+        }) {
+            //Remove
+            sharedData.cartProducts.remove(at: index)
+        } else {
+            //Add
+            sharedData.cartProducts.append(product)
+        }
     }
 }
 
 struct ProductDetailScreen_Previews: PreviewProvider {
     static var previews: some View {
-//        ProductDetailScreen(product: Product(id: 0, title: "title", description: "desc", price: 2, discountPercentage: 4, rating: 6, stock: 8, brand: "brand", category: "cat", thumbnail: "thumb", images: ["images"]))
-//            .environmentObject(SharedDataViewModel())
-        MainScreen()
+        ProductDetailScreen(product: Product(id: 0, title: "title", description: "desc", price: 2, discountPercentage: 4, rating: 6, stock: 8, brand: "brand", category: "cat", thumbnail: "thumb", images: ["images"]), animation: Namespace().wrappedValue)
+            .environmentObject(SharedDataViewModel())
     }
 }
