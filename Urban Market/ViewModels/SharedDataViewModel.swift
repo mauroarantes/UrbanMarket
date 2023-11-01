@@ -14,4 +14,13 @@ class SharedDataViewModel: ObservableObject {
     @Published var likedProducts: [Product] = []
     @Published var cartProducts: [Product] = []
     
+    func getTotalPrice() -> String {
+        var total: Int = 0
+        
+        cartProducts.forEach { product in
+            let productTotal = product.quantity * product.price
+            total += productTotal
+        }
+         return "£\(total)"
+    }
 }

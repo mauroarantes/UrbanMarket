@@ -30,7 +30,8 @@ struct MainScreen: View {
                 ProfileScreen()
                     .tag(Tab.Profile)
                     .environmentObject(viewModel)
-                Text("Cart")
+                CartScreen()
+                    .environmentObject(sharedData)
                     .tag(Tab.Cart)
             }
             HStack(spacing: 0) {

@@ -79,7 +79,7 @@ struct ProductDetailScreen: View {
                     Button {
                         addToCart()
                     } label: {
-                        Text("Add to basket")
+                        Text(isAddedToCart() ? "Added to cart" : "Add to cart")
                             .font(.custom(customFont, size: 20).bold())
                             .foregroundColor(.white)
                             .padding(.vertical, 20)
@@ -90,6 +90,7 @@ struct ProductDetailScreen: View {
                                     .shadow(color: .black.opacity(0.06), radius: 5, x: 5, y: 5)
                             )
                     }
+                    .disabled(isAddedToCart())
                 }
                 .padding([.horizontal, .bottom], 20)
                 .padding(.top, 25)
