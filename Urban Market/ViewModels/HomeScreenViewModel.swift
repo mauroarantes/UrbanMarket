@@ -36,7 +36,7 @@ class HomeScreenViewModel: ObservableObject {
     
     func getProducts() {
         
-        guard let url = URL(string: "https://dummyjson.com/products") else { return }
+        guard let url = URL(string: "https://dummyjson.com/products/?limit=0") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
             .subscribe(on: DispatchQueue.global(qos: .background))
