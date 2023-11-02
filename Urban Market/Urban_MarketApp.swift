@@ -27,6 +27,7 @@ struct Urban_MarketApp: App {
             Group {
                 if viewModel.userSession != nil {
                     MainScreen()
+                        .tag(Tab.Home)
                         .environmentObject(viewModel)
                 } else {
                     OnBoardingScreen()

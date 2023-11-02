@@ -59,6 +59,7 @@ class LoginScreenViewModel: ObservableObject {
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
         guard let user = try? snapshot.data(as: User.self) else { return }
         self.currentUser = user
+        self.registerUser = false
     }
     
     func forgotPassword(email: String) {
