@@ -12,20 +12,15 @@ struct MoreProductsScreen: View {
     @EnvironmentObject var viewModel: HomeScreenViewModel
     @EnvironmentObject var sharedData: SharedDataViewModel
     
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-    
     var animation: Namespace.ID
     
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 20) {
                 Button {
-                    self.presentationMode.wrappedValue.dismiss()
-//                    withAnimation {
-//                        viewModel.searchActive = false
-//                    }
-//                    viewModel.searchText = ""
-//                    sharedData.fromSearchScreen = false
+                    withAnimation {
+                        viewModel.showMoreProducts = false
+                    }
                 } label: {
                     Image(systemName: "arrow.left")
                         .font(.title2)
@@ -40,44 +35,16 @@ struct MoreProductsScreen: View {
             // Filter Results
             
             if let products = viewModel.filteredProducts {
-//                if products.isEmpty {
-//                    VStack(spacing: 0) {
-//                        Text("Item Not Found")
-//                            .font(.custom(customFont, size: 24).bold())
-//                            .padding(.vertical)
-//                    }
-//                    .padding()
-//                } else {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: 0) {
-                            Text("Found \(products.count) results")
-                                .font(.custom(customFont, size: 24).bold())
-                                .padding(.vertical)
-                            StaggeredGrid(columns: 2, spacing: 20, list: products) { product in
-                                // Card View
-                                ProductCardView(product: product)
-                            }
-                        }
-                        .padding()
+                ScrollView(.vertical, showsIndicators: false) {
+                    StaggeredGrid(columns: 2, spacing: 20, list: products) { product in
+                        // Card View
+                        ProductCardView(product: product)
                     }
-//                }
+                    .padding()
+                }
             }
-//            else {
-//                ProgressView()
-//                    .padding(.top, 30)
-//                    .opacity(viewModel.searchText == "" ? 0 : 1)
-//            }
         }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        VStack {
-//            Text("More Products")
-//                .font(.custom(customFont, size: 24).bold())
-//                .foregroundColor(.black)
-//                .frame(maxWidth: .infinity, alignment: .leading)
-//        }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-//        .padding()
-//        .background(Color.gray.opacity(0.1).ignoresSafeArea())
+        .background(Color.white.ignoresSafeArea())
     }
     
     @ViewBuilder
@@ -101,9 +68,10 @@ struct MoreProductsScreen: View {
                     }, placeholder: {
                         ProgressView()
                     })
-                    .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
+                    .matchedGeometryEffect(id: "\(product.id)MORE", in: animation)
                 }
             }
+            .cornerRadius(25)
             .frame(width: getRect().width/2.5, height: getRect().width/2.5)
             Text(product.title)
                 .font(.custom(customFont, size: 18))
@@ -116,13 +84,13 @@ struct MoreProductsScreen: View {
                 .padding(.top)
                 .foregroundColor(.orange)
         }
-        .padding(.horizontal, 10)
-        .padding(.bottom, 22)
+        .padding([.horizontal, .top], 10)
+        .padding(.bottom, 20)
         .background(Color.gray.opacity(0.1)
                 .cornerRadius(25))
         .onTapGesture {
             withAnimation(.easeInOut) {
-                sharedData.fromSearchScreen = true
+                sharedData.fromMoreProductsScreen = true
                 sharedData.detailProduct = product
                 sharedData.showDetailProduct = true
             }

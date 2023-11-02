@@ -113,6 +113,7 @@ struct SearchScreen: View {
                     .matchedGeometryEffect(id: "\(product.id)SEARCH", in: animation)
                 }
             }
+            .cornerRadius(25)
             .frame(width: getRect().width/2.5, height: getRect().width/2.5)
             Text(product.title)
                 .font(.custom(customFont, size: 18))
@@ -125,8 +126,8 @@ struct SearchScreen: View {
                 .padding(.top)
                 .foregroundColor(.orange)
         }
-        .padding(.horizontal, 10)
-        .padding(.bottom, 22)
+        .padding([.horizontal, .top], 10)
+        .padding(.bottom, 20)
         .background(Color.gray.opacity(0.1)
                 .cornerRadius(25))
         .onTapGesture {

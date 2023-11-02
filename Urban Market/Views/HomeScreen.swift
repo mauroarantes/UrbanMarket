@@ -91,17 +91,16 @@ struct HomeScreen: View {
         .onChange(of: viewModel.productType) { _ in
             viewModel.filterProductsByType()
         }
-        .fullScreenCover(isPresented: $viewModel.showMoreProducts) {
-            MoreProductsScreen(animation: animation)
-                .environmentObject(viewModel)
-                .environmentObject(sharedData)
-        }
         // Search View
         .overlay(
             ZStack {
                 if viewModel.searchActive {
                     SearchScreen(animation: animation)
                         .environmentObject(viewModel)
+                } else if viewModel.showMoreProducts {
+                    MoreProductsScreen(animation: animation)
+                        .environmentObject(viewModel)
+                        .environmentObject(sharedData)
                 }
             }
         )
@@ -147,6 +146,7 @@ struct HomeScreen: View {
                     .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
                 }
             }
+            .cornerRadius(25)
             .frame(width: getRect().width/2.5, height: getRect().width/2.5)
             Text(product.title)
                 .font(.custom(customFont, size: 18))
@@ -159,8 +159,8 @@ struct HomeScreen: View {
                 .padding(.top)
                 .foregroundColor(.orange)
         }
-        .padding(.horizontal, 10)
-        .padding(.bottom, 22)
+        .padding([.horizontal, .top], 10)
+        .padding(.bottom, 20)
         .background(Color.gray.opacity(0.1)
                 .cornerRadius(25))
         .onTapGesture {
