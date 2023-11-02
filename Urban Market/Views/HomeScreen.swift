@@ -34,6 +34,7 @@ struct HomeScreen: View {
                 }
                 .frame(width: getRect().width / 1.6)
                 .padding(.horizontal, 25)
+                .padding(.top, -8)
                 .contentShape(Rectangle())
                 .onTapGesture {
                     withAnimation(.easeInOut) {
