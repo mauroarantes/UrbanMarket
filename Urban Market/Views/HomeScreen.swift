@@ -17,6 +17,11 @@ struct HomeScreen: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
+            PullToRefresh(coordinateSpaceName: "pullToRefresh") {
+                print("Pulled to refresh")
+                viewModel.filteredProducts = []
+                viewModel.getProducts()
+            }
             VStack(spacing: 15) {
                 // Search bar
                 ZStack {
@@ -86,6 +91,7 @@ struct HomeScreen: View {
             }
             .padding(.vertical)
         }
+        .coordinateSpace(name: "pullToRefresh")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
         .onChange(of: viewModel.productType) { _ in
@@ -197,6 +203,40 @@ struct HomeScreen: View {
                         .padding(.horizontal, -5)
                     , alignment: .bottom)
         }
+    }
+}
+
+struct PullToRefresh: View {
+    
+    var coordinateSpaceName: String
+    var onRefresh: ()->Void
+    
+    @State var needRefresh: Bool = false
+    
+    var body: some View {
+        GeometryReader { geo in
+            if (geo.frame(in: .named(coordinateSpaceName)).midY > 50) {
+                Spacer()
+                    .onAppear {
+                        needRefresh = true
+                    }
+            } else if (geo.frame(in: .named(coordinateSpaceName)).maxY < 10) {
+                Spacer()
+                    .onAppear {
+                        if needRefresh {
+                            needRefresh = false
+                            onRefresh()
+                        }
+                    }
+            }
+            HStack {
+                Spacer()
+                if needRefresh {
+                    ProgressView()
+                }
+                Spacer()
+            }
+        }.padding(.top, -50)
     }
 }
 
