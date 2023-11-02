@@ -59,7 +59,7 @@ struct HomeScreen: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 25) {
-                        ForEach(viewModel.filteredProducts) { product in
+                        ForEach(viewModel.filteredProducts.prefix(4)) { product in
                             ProductCardView(product: product)
                         }
                     }
@@ -91,8 +91,10 @@ struct HomeScreen: View {
         .onChange(of: viewModel.productType) { _ in
             viewModel.filterProductsByType()
         }
-        .sheet(isPresented: $viewModel.showMoreProducts) {
-            MoreProductsScreen()
+        .fullScreenCover(isPresented: $viewModel.showMoreProducts) {
+            MoreProductsScreen(animation: animation)
+                .environmentObject(viewModel)
+                .environmentObject(sharedData)
         }
         // Search View
         .overlay(

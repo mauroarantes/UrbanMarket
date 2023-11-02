@@ -65,7 +65,6 @@ class HomeScreenViewModel: ObservableObject {
                 .filter { product in
                     product.category == self.productType.rawValue
                 }
-                .prefix(4)
             DispatchQueue.main.async {
                 self.filteredProducts = results.compactMap({ product in
                     product

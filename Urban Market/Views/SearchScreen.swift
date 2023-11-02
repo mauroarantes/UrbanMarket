@@ -92,13 +92,6 @@ struct SearchScreen: View {
     @ViewBuilder
     func ProductCardView(product: Product) -> some View {
         VStack(spacing: 10) {
-//            AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
-//                image
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//            }, placeholder: {
-//                ProgressView()
-//            })
             ZStack {
                 if sharedData.showDetailProduct {
                     AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
