@@ -65,11 +65,11 @@ struct ProductDetailScreen: View {
                         .foregroundColor(.gray)
                     
                     HStack {
-                        Text("Total")
+                        Text(NSLocalizedString("Price", comment: "Item price"))
                             .font(.custom(customFont, size: 20).bold())
                             .foregroundColor(.orange)
                         Spacer()
-                        Text("£\(product.price)")
+                        Text(String(format: NSLocalizedString("£%@", comment: "Item price"), "\(product.price)"))
                             .font(.custom(customFont, size: 20).bold())
                             .foregroundColor(.orange)
                     }
@@ -79,7 +79,7 @@ struct ProductDetailScreen: View {
                     Button {
                         addToCart()
                     } label: {
-                        Text(isAddedToCart() ? "Added to cart" : "Add to cart")
+                        Text(isAddedToCart() ? NSLocalizedString("Added to cart", comment: "Cart button label") : NSLocalizedString("Add to cart", comment: "Cart button label"))
                             .font(.custom(customFont, size: 20).bold())
                             .foregroundColor(.white)
                             .padding(.vertical, 20)

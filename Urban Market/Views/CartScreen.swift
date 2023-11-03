@@ -19,7 +19,7 @@ struct CartScreen: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         HStack {
-                            Text("Cart")
+                            Text(NSLocalizedString("Cart", comment: "Cart screen title"))
                                 .font(.custom(customFont, size: 28).bold())
                             Spacer()
                             Button {
@@ -39,7 +39,7 @@ struct CartScreen: View {
                         
                         if sharedData.cartProducts.isEmpty {
                             Group {
-                                Text("No items added")
+                                Text(NSLocalizedString("No items added", comment: "No items added"))
                                     .font(.custom(customFont, size: 25).bold())
                                     .foregroundColor(.orange)
                             }
@@ -73,7 +73,7 @@ struct CartScreen: View {
                 if !sharedData.cartProducts.isEmpty {
                     Group {
                         HStack {
-                            Text("Total")
+                            Text(NSLocalizedString("Total", comment: "Checkout total"))
                                 .font(.custom(customFont, size: 14).bold())
                             Spacer()
                             Text(sharedData.getTotalPrice())
@@ -84,7 +84,7 @@ struct CartScreen: View {
                         Button {
                             //
                         } label: {
-                            Text("Checkout")
+                            Text(NSLocalizedString("Checkout", comment: "Checkout button label"))
                                 .font(.custom(customFont, size: 18).bold())
                                 .foregroundColor(.white)
                                 .padding(.vertical, 18)
@@ -134,14 +134,14 @@ struct CardView: View {
                 Text(product.title)
                     .font(.custom(customFont, size: 18).bold())
                     .lineLimit(1)
-                Text("£\(product.price)")
+                Text(String(format: NSLocalizedString("£%@", comment: "Item price"), "\(product.price)"))
                     .font(.custom(customFont, size: 17).bold())
                     .foregroundColor(.orange)
                 
                 // Quantity buttons
                 
                 HStack(spacing: 10) {
-                    Text("Quantity")
+                    Text(NSLocalizedString("Quatity", comment: "Quantity"))
                         .font(.custom(customFont, size: 14))
                         .foregroundColor(.gray)
                     Button {

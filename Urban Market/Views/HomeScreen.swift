@@ -42,7 +42,7 @@ struct HomeScreen: View {
                     }
                 }
                 
-                Text("Order online\ncollect in store")
+                Text(NSLocalizedString("Order online\ncollect in store", comment: "Home screen title"))
                     .font(.custom(customFont, size: 28).bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top)
@@ -81,7 +81,7 @@ struct HomeScreen: View {
                     Label {
                         Image(systemName: "arrow.right")
                     } icon: {
-                        Text("See more")
+                        Text(NSLocalizedString("See more", comment: "See more button label"))
                     }
                     .font(.custom(customFont, size: 15).bold())
                     .foregroundColor(.orange)
@@ -119,7 +119,7 @@ struct HomeScreen: View {
             Image(systemName: "magnifyingglass")
                 .font(.title2)
                 .foregroundColor(.gray)
-            TextField("Search", text: .constant(""))
+            TextField(NSLocalizedString("Search", comment: "Search bar placeholder"), text: .constant(""))
                 .disabled(true)
         }
         .padding(.vertical, 12)
@@ -161,7 +161,7 @@ struct HomeScreen: View {
             Text(product.brand)
                 .font(.custom(customFont, size: 14))
                 .foregroundColor(.gray)
-            Text("£\(product.price)").bold()
+            Text(String(format: NSLocalizedString("£%@", comment: "Item price"), "\(product.price)")).bold()
                 .font(.custom(customFont, size: 16))
                 .padding(.top)
                 .foregroundColor(.orange)
@@ -186,6 +186,7 @@ struct HomeScreen: View {
             }
         } label: {
             Text(type.capitalized)
+//            Text(ocalizedString(type, comment: "Category button label").capitalized)
                 .foregroundColor(viewModel.productType.rawValue == type ? .orange : .gray)
                 .padding(.bottom, 10)
                 .overlay(

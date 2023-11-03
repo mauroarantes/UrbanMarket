@@ -22,6 +22,6 @@ class SharedDataViewModel: ObservableObject {
             let productTotal = product.quantity * product.price
             total += productTotal
         }
-         return "£\(total)"
+         return String(format: NSLocalizedString("£%@", comment: "Item price"), "\(total)")
     }
 }

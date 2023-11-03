@@ -34,9 +34,8 @@ struct SearchScreen: View {
                     Image(systemName: "magnifyingglass")
                         .font(.title2)
                         .foregroundColor(.gray)
-                    TextField("Search", text: $viewModel.searchText)
+                    TextField(NSLocalizedString("Search", comment: "Search bar placeholder"), text: $viewModel.searchText)
                         .focused($startTF)
-                        .textCase(.lowercase)
                         .disableAutocorrection(true)
                 }
                 .padding(.vertical, 12)
@@ -55,7 +54,7 @@ struct SearchScreen: View {
             if let products = viewModel.searchedProducts {
                 if products.isEmpty {
                     VStack(spacing: 0) {
-                        Text("Item Not Found")
+                        Text(NSLocalizedString("Item not found", comment: "Item not found"))
                             .font(.custom(customFont, size: 24).bold())
                             .padding(.vertical)
                     }
@@ -63,7 +62,7 @@ struct SearchScreen: View {
                 } else {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 0) {
-                            Text("Found \(products.count) results")
+                            Text(String(format: NSLocalizedString("Found %@ results", comment: "Search results"), "\(products.count)"))
                                 .font(.custom(customFont, size: 24).bold())
                                 .padding(.vertical)
                             StaggeredGrid(columns: 2, spacing: 20, list: products) { product in

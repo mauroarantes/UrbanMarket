@@ -18,7 +18,7 @@ struct LikedScreen: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     HStack {
-                        Text("Favourites")
+                        Text(NSLocalizedString("Favourites", comment: "Favourites screen title"))
                             .font(.custom(customFont, size: 28).bold())
                         Spacer()
                         Button {
@@ -38,7 +38,7 @@ struct LikedScreen: View {
                     
                     if sharedData.likedProducts.isEmpty {
                         Group {
-                            Text("No favourites")
+                            Text(NSLocalizedString("No favourites", comment: "No favourites"))
                                 .font(.custom(customFont, size: 25).bold())
                                 .foregroundColor(.orange)
                         }
@@ -90,10 +90,10 @@ struct LikedScreen: View {
                 Text(product.title)
                     .font(.custom(customFont, size: 18).bold())
                     .lineLimit(1)
-                Text("£\(product.price)")
+                Text(String(format: NSLocalizedString("£%@", comment: "Item price"), "\(product.price)"))
                     .font(.custom(customFont, size: 17).bold())
                     .foregroundColor(.orange)
-                Text("Category: \(product.category.capitalized)")
+                Text(String(format: NSLocalizedString("Category: %@", comment: "Category label"), "\(product.category.capitalized)"))
                     .font(.custom(customFont, size: 13))
                     .foregroundColor(.gray)
             }

@@ -79,7 +79,7 @@ struct MoreProductsScreen: View {
             Text(product.brand)
                 .font(.custom(customFont, size: 14))
                 .foregroundColor(.gray)
-            Text("£\(product.price)").bold()
+            Text(String(format: NSLocalizedString("£%@", comment: "Item price"), "\(product.price)")).bold()
                 .font(.custom(customFont, size: 16))
                 .padding(.top)
                 .foregroundColor(.orange)

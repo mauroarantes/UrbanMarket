@@ -15,7 +15,7 @@ struct ProfileScreen: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
-                    Text("My Profile")
+                    Text(NSLocalizedString("My Profile", comment: "Profile screen title"))
                         .font(.custom(customFont, size: 28).bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
@@ -46,16 +46,16 @@ struct ProfileScreen: View {
                     
                     // Custom Navigation Links
                     
-                    CustomNavigationLink(title: "Edit Profile") {
+                    CustomNavigationLink(title: NSLocalizedString("Edit Profile", comment: "Edit profile button label")) {
                         Text("")
-                            .navigationTitle("Edit Profile")
+                            .navigationTitle(NSLocalizedString("Edit Profile", comment: "Edit profile button label"))
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.white.ignoresSafeArea())
                     }
                     
-                    CustomNavigationLink(title: "Order History") {
+                    CustomNavigationLink(title: NSLocalizedString("Order History", comment: "Order History button label")) {
                         Text("")
-                            .navigationTitle("Order History")
+                            .navigationTitle(NSLocalizedString("Order History", comment: "Order History button label"))
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.white.ignoresSafeArea())
                     }
@@ -63,7 +63,7 @@ struct ProfileScreen: View {
                     Button {
                         viewModel.signOut()
                     } label: {
-                        Text("Sign Out")
+                        Text(NSLocalizedString("Sign Out", comment: "Sign Out button label"))
                             .font(.custom(customFont, size: 17).bold())
                     }
                     .foregroundColor(.black)
@@ -76,7 +76,7 @@ struct ProfileScreen: View {
                     Button {
                         viewModel.delete()
                     } label: {
-                        Text("Delete Account")
+                        Text(NSLocalizedString("Delete Account", comment: "Delete Account button label"))
                             .font(.custom(customFont, size: 17).bold())
                             .foregroundColor(.red)
                     }
