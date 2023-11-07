@@ -98,6 +98,9 @@ struct CartScreen: View {
                     .padding(.horizontal, 25)
                 }
             }
+            .onDisappear {
+                showDeleteOption = false
+            }
             .navigationBarHidden(true)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
@@ -109,6 +112,7 @@ struct CartScreen: View {
             return product.id == currentProduct.id
         }) {
             let _ = withAnimation {
+                sharedData.deleteCartProduct(id: sharedData.cartProducts[index].id)
                 sharedData.cartProducts.remove(at: index)
             }
         }

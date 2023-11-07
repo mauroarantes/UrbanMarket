@@ -12,7 +12,7 @@ class CoreDataManager {
     
     let container: NSPersistentContainer
     let context: NSManagedObjectContext
-//    var persistentCartProducts: [LikedEntity] = []
+    var persistentCartProducts: [CartEntity] = []
     var persistentLikedProducts: [LikedEntity] = []
     
     init() {
@@ -34,10 +34,13 @@ class CoreDataManager {
     }
     
     func resetCoreData() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LikedEntity")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        let fetchRequestLiked = NSFetchRequest<NSFetchRequestResult>(entityName: "LikedEntity")
+        let deleteRequestLiked = NSBatchDeleteRequest(fetchRequest: fetchRequestLiked)
+        let fetchRequestCart = NSFetchRequest<NSFetchRequestResult>(entityName: "CartEntity")
+        let deleteRequestCart = NSBatchDeleteRequest(fetchRequest: fetchRequestCart)
         do {
-            try container.viewContext.execute(deleteRequest)
+            try container.viewContext.execute(deleteRequestLiked)
+            try container.viewContext.execute(deleteRequestCart)
         } catch {
             print("Error reseting Core Data: \(error.localizedDescription)")
         }

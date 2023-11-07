@@ -18,6 +18,43 @@ class SharedDataViewModel: ObservableObject {
     
     init() {
         getLikedProducts()
+        getCartProducts()
+    }
+    
+    func getCartProducts() {
+        let request = NSFetchRequest<CartEntity>(entityName: "CartEntity")
+        do {
+            CoreDataManager.shared.persistentCartProducts = try CoreDataManager.shared.context.fetch(request)
+            CoreDataManager.shared.persistentCartProducts.forEach { cartProduct in
+                if let title = cartProduct.title, let description = cartProduct.productDescription, let brand = cartProduct.brand, let category = cartProduct.category, let image = cartProduct.image {
+                    let newProduct = Product(id: Int(cartProduct.id), title: title, description: description, price: Int(cartProduct.price), brand: brand, category: category, images: [image])
+                    cartProducts.append(newProduct)
+                }
+            }
+        } catch let error {
+            print("Error fetching Core Data: \(error.localizedDescription)")
+        }
+    }
+    
+    func addCartProduct(product: Product) {
+        let newCartProduct = CartEntity(context: CoreDataManager.shared.context)
+        newCartProduct.id = Int16(product.id)
+        newCartProduct.title = product.title
+        newCartProduct.brand = product.brand
+        newCartProduct.price = Int16(product.price)
+        newCartProduct.category = product.category
+        newCartProduct.productDescription = product.description
+        newCartProduct.image = product.images[0]
+        CoreDataManager.shared.save()
+    }
+    
+    func deleteCartProduct(id: Int) {
+        if let product = CoreDataManager.shared.persistentCartProducts.first(where: { product in
+            product.id == Int16(id)
+        }) {
+            CoreDataManager.shared.context.delete(product)
+            CoreDataManager.shared.save()
+        }
     }
     
     func getLikedProducts() {

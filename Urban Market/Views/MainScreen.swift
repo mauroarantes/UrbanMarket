@@ -114,6 +114,7 @@ struct MainScreen: View {
         .onChange(of: viewModel.currentUser, perform: { newUser in
             if newUser.id == "" {
                 sharedData.likedProducts = []
+                sharedData.cartProducts = []
             }
         })
         .overlay(

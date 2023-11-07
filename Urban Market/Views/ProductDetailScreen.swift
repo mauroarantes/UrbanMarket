@@ -139,9 +139,11 @@ struct ProductDetailScreen: View {
             return self.product.id == product.id
         }) {
             //Remove
+            sharedData.deleteCartProduct(id: product.id)
             sharedData.cartProducts.remove(at: index)
         } else {
             //Add
+            sharedData.addCartProduct(product: product)
             sharedData.cartProducts.append(product)
         }
     }

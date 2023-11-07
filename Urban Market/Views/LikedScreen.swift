@@ -68,6 +68,9 @@ struct LikedScreen: View {
                 }
                 .padding()
             }
+            .onDisappear {
+                showDeleteOption = false
+            }
             .navigationBarHidden(true)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
