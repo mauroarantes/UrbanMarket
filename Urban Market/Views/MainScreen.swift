@@ -111,6 +111,11 @@ struct MainScreen: View {
             .padding([.horizontal, .top])
             .padding(.bottom, 10)
         }
+        .onChange(of: viewModel.currentUser, perform: { newUser in
+            if newUser.id == "" {
+                sharedData.likedProducts = []
+            }
+        })
         .overlay(
             ZStack {
                 if let product = sharedData.detailProduct, sharedData.showDetailProduct {

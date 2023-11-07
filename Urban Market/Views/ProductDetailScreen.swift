@@ -125,9 +125,11 @@ struct ProductDetailScreen: View {
             return self.product.id == product.id
         }) {
             //Remove
+            sharedData.deleteLikedProduct(id: product.id)
             sharedData.likedProducts.remove(at: index)
         } else {
             //Add
+            sharedData.addLikedProduct(product: product)
             sharedData.likedProducts.append(product)
         }
     }
@@ -142,12 +144,5 @@ struct ProductDetailScreen: View {
             //Add
             sharedData.cartProducts.append(product)
         }
-    }
-}
-
-struct ProductDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetailScreen(product: Product(id: 0, title: "title", description: "desc", price: 2, discountPercentage: 4, rating: 6, stock: 8, brand: "brand", category: "cat", thumbnail: "thumb", images: ["images"]), animation: Namespace().wrappedValue)
-            .environmentObject(SharedDataViewModel())
     }
 }

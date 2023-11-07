@@ -18,15 +18,12 @@ struct Product: Codable, Identifiable, Hashable {
     let id: Int
     let title, description: String
     let price: Int
-    let discountPercentage, rating: Double
-    let stock: Int
     let brand, category: String
-    let thumbnail: String
     let images: [String]
     var quantity: Int = 1
     
     private enum CodingKeys: String, CodingKey {
-        case id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images
+        case id, title, description, price, brand, category, images
     }
 }
 

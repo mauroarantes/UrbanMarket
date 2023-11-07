@@ -35,6 +35,7 @@ class LoginScreenViewModel: ObservableObject {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
+            CoreDataManager.shared.resetCoreData()
             await fetchUser()
         } catch {
             print("DEBUG: Failed to log in with error: \(error.localizedDescription)")
@@ -48,6 +49,7 @@ class LoginScreenViewModel: ObservableObject {
             let user = User(id: result.user.uid, fullName: fullName, email: email, password: password)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
+            CoreDataManager.shared.resetCoreData()
             await fetchUser()
         } catch {
             print("DEBUG: Failed to create user with error: \(error.localizedDescription)")
@@ -74,6 +76,7 @@ class LoginScreenViewModel: ObservableObject {
         } catch {
             print("DEBUG: Failed to sign out user with error: \(error.localizedDescription)")
         }
+        CoreDataManager.shared.resetCoreData()
     }
     
     func delete() {
@@ -82,5 +85,6 @@ class LoginScreenViewModel: ObservableObject {
         Firestore.firestore().collection("users").document(uid).delete()
         self.userSession = nil
         self.currentUser = User(id: "", fullName: "", email: "", password: "")
+        CoreDataManager.shared.resetCoreData()
     }
 }

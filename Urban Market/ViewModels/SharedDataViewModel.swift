@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class SharedDataViewModel: ObservableObject {
     @Published var detailProduct: Product?
@@ -14,6 +15,46 @@ class SharedDataViewModel: ObservableObject {
     @Published var fromMoreProductsScreen: Bool = false
     @Published var likedProducts: [Product] = []
     @Published var cartProducts: [Product] = []
+    
+    init() {
+        getLikedProducts()
+    }
+    
+    func getLikedProducts() {
+        let request = NSFetchRequest<LikedEntity>(entityName: "LikedEntity")
+        do {
+            CoreDataManager.shared.persistentLikedProducts = try CoreDataManager.shared.context.fetch(request)
+            CoreDataManager.shared.persistentLikedProducts.forEach { likedProduct in
+                if let title = likedProduct.title, let description = likedProduct.productDescription, let brand = likedProduct.brand, let category = likedProduct.category, let image = likedProduct.image {
+                    let newProduct = Product(id: Int(likedProduct.id), title: title, description: description, price: Int(likedProduct.price), brand: brand, category: category, images: [image])
+                    likedProducts.append(newProduct)
+                }
+            }
+        } catch let error {
+            print("Error fetching Core Data: \(error.localizedDescription)")
+        }
+    }
+    
+    func addLikedProduct(product: Product) {
+        let newLikedProduct = LikedEntity(context: CoreDataManager.shared.context)
+        newLikedProduct.id = Int16(product.id)
+        newLikedProduct.title = product.title
+        newLikedProduct.brand = product.brand
+        newLikedProduct.price = Int16(product.price)
+        newLikedProduct.category = product.category
+        newLikedProduct.productDescription = product.description
+        newLikedProduct.image = product.images[0]
+        CoreDataManager.shared.save()
+    }
+    
+    func deleteLikedProduct(id: Int) {
+        if let product = CoreDataManager.shared.persistentLikedProducts.first(where: { product in
+            product.id == Int16(id)
+        }) {
+            CoreDataManager.shared.context.delete(product)
+            CoreDataManager.shared.save()
+        }
+    }
     
     func getTotalPrice() -> String {
         var total: Int = 0
