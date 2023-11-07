@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CartEntity" representedClassName="CartEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProfileEntity" inverseName="cartProducts" inverseEntity="ProfileEntity"/>
+    </entity>
+    <entity name="LikedEntity" representedClassName="LikedEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="brand" attributeType="String"/>
+        <attribute name="category" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" attributeType="String"/>
+        <attribute name="price" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="productDescription" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProfileEntity" inverseName="likedProducts" inverseEntity="ProfileEntity"/>
+    </entity>
+    <entity name="ProfileEntity" representedClassName="ProfileEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="cartProducts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CartEntity" inverseName="profile" inverseEntity="CartEntity"/>
+        <relationship name="likedProducts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LikedEntity" inverseName="profile" inverseEntity="LikedEntity"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="CartEntity" positionX="76.9921875" positionY="-218.50390625" width="128" height="59"/>
+        <element name="LikedEntity" positionX="-346.01171875" positionY="-255.5234375" width="128" height="163"/>
+        <element name="ProfileEntity" positionX="-85.7734375" positionY="-118.7578125" width="128" height="88"/>
     </elements>
 </model>

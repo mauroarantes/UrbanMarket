@@ -60,7 +60,7 @@ struct ProductDetailScreen: View {
                 VStack(alignment: .leading, spacing: 15) {
                     Text(product.title)
                         .font(.custom(customFont, size: 20).bold())
-                    Text(product.description)
+                    Text(product.productDescription)
                         .font(.custom(customFont, size: 18))
                         .foregroundColor(.gray)
                     
@@ -126,9 +126,11 @@ struct ProductDetailScreen: View {
         }) {
             //Remove
             sharedData.likedProducts.remove(at: index)
+            sharedData.deleteLikedProduct(id: product.id)
         } else {
             //Add
             sharedData.likedProducts.append(product)
+            sharedData.addLikedProduct(product: product)
         }
     }
     
@@ -145,9 +147,9 @@ struct ProductDetailScreen: View {
     }
 }
 
-struct ProductDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetailScreen(product: Product(id: 0, title: "title", description: "desc", price: 2, discountPercentage: 4, rating: 6, stock: 8, brand: "brand", category: "cat", thumbnail: "thumb", images: ["images"]), animation: Namespace().wrappedValue)
-            .environmentObject(SharedDataViewModel())
-    }
-}
+//struct ProductDetailScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductDetailScreen(product: Product(id: 0, title: "title", description: "desc", price: 2, discountPercentage: 4, rating: 6, stock: 8, brand: "brand", category: "cat", thumbnail: "thumb", images: ["images"]), animation: Namespace().wrappedValue)
+//            .environmentObject(SharedDataViewModel())
+//    }
+//}

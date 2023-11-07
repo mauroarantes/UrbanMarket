@@ -109,6 +109,7 @@ struct LikedScreen: View {
             return product.id == currentProduct.id
         }) {
             let _ = withAnimation {
+                sharedData.deleteLikedProduct(id: sharedData.likedProducts[index].id)
                 sharedData.likedProducts.remove(at: index)
             }
         }

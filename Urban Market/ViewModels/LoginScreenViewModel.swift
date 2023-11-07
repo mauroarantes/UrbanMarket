@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import CoreData
 
 protocol AuthenticationFormProtocol {
     var formValid: Bool { get }
@@ -26,9 +27,16 @@ class LoginScreenViewModel: ObservableObject {
     init(user: User) {
         self.currentUser = user
         self.userSession = Auth.auth().currentUser
+        CoreDataManager.shared.getProfiles()
         Task {
             await fetchUser()
         }
+    }
+    
+    func addProfile() {
+        let newProfile = ProfileEntity(context: CoreDataManager.shared.context)
+        newProfile.id = currentUser.id
+        CoreDataManager.shared.save()
     }
     
     func login(email: String, password: String) async throws {
@@ -60,6 +68,7 @@ class LoginScreenViewModel: ObservableObject {
         guard let user = try? snapshot.data(as: User.self) else { return }
         self.currentUser = user
         self.registerUser = false
+        CoreDataManager.shared.addProfile(id: currentUser.id)
     }
     
     func forgotPassword(email: String) {
@@ -81,6 +90,7 @@ class LoginScreenViewModel: ObservableObject {
         Auth.auth().currentUser?.delete()
         Firestore.firestore().collection("users").document(uid).delete()
         self.userSession = nil
+        CoreDataManager.shared.deleteProfile(id: currentUser.id)
         self.currentUser = User(id: "", fullName: "", email: "", password: "")
     }
 }

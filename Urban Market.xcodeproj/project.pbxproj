@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		060F30302AE1622D004B1120 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */; };
 		060F30342AE17C2F004B1120 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060F30332AE17C2F004B1120 /* MainScreen.swift */; };
+		068963642AF9259800C29E82 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068963632AF9259800C29E82 /* CoreDataManager.swift */; };
 		06A3EB112AEFCD550098B1DF /* CartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3EB102AEFCD550098B1DF /* CartScreen.swift */; };
 		06C284322AE6D51A006F5422 /* MoreProductsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C284312AE6D51A006F5422 /* MoreProductsScreen.swift */; };
 		06C284342AE7CA99006F5422 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C284332AE7CA99006F5422 /* SearchScreen.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
 		060F30332AE17C2F004B1120 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		068963632AF9259800C29E82 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		06A3EB102AEFCD550098B1DF /* CartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreen.swift; sourceTree = "<group>"; };
 		06C284312AE6D51A006F5422 /* MoreProductsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProductsScreen.swift; sourceTree = "<group>"; };
 		06C284332AE7CA99006F5422 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
@@ -147,6 +149,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		068963622AF9256F00C29E82 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				068963632AF9259800C29E82 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		06C67E142AE13D8200E9353B = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +180,7 @@
 		06C67E1F2AE13D8200E9353B /* Urban Market */ = {
 			isa = PBXGroup;
 			children = (
+				068963622AF9256F00C29E82 /* CoreData */,
 				06C67E552AE15E6F00E9353B /* Fonts */,
 				06C67E4F2AE141A500E9353B /* Models */,
 				060F302E2AE161B8004B1120 /* Views */,
@@ -396,6 +407,7 @@
 				06C67E232AE13D8200E9353B /* HomeScreen.swift in Sources */,
 				06CC5ADD2AEAA4D7007A064A /* SharedDataViewModel.swift in Sources */,
 				06C284322AE6D51A006F5422 /* MoreProductsScreen.swift in Sources */,
+				068963642AF9259800C29E82 /* CoreDataManager.swift in Sources */,
 				06C67E212AE13D8200E9353B /* Urban_MarketApp.swift in Sources */,
 				06C67E512AE142F600E9353B /* ProductModel.swift in Sources */,
 				06CC5ADF2AEAA61D007A064A /* ProductDetailScreen.swift in Sources */,
