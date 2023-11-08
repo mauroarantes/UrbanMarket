@@ -49,6 +49,12 @@ class SharedDataViewModel: ObservableObject {
     }
     
     func deleteCartProduct(id: Int) {
+        let request = NSFetchRequest<CartEntity>(entityName: "CartEntity")
+        do {
+            CoreDataManager.shared.persistentCartProducts = try CoreDataManager.shared.context.fetch(request)
+        } catch {
+            print("Error fetching Core Data: \(error.localizedDescription)")
+        }
         if let product = CoreDataManager.shared.persistentCartProducts.first(where: { product in
             product.id == Int16(id)
         }) {
@@ -85,6 +91,12 @@ class SharedDataViewModel: ObservableObject {
     }
     
     func deleteLikedProduct(id: Int) {
+        let request = NSFetchRequest<LikedEntity>(entityName: "LikedEntity")
+        do {
+            CoreDataManager.shared.persistentLikedProducts = try CoreDataManager.shared.context.fetch(request)
+        } catch {
+            print("Error fetching Core Data: \(error.localizedDescription)")
+        }
         if let product = CoreDataManager.shared.persistentLikedProducts.first(where: { product in
             product.id == Int16(id)
         }) {
