@@ -10,6 +10,8 @@ import SwiftUI
 struct ProfileScreen: View {
     
     @EnvironmentObject var viewModel: LoginScreenViewModel
+    @State var showSignOutAlert: Bool = false
+    @State var showDeleteAlert: Bool = false
     
     var body: some View {
         NavigationView {
@@ -61,11 +63,17 @@ struct ProfileScreen: View {
                     }
                     
                     Button {
-                        viewModel.signOut()
+                        showSignOutAlert = true
                     } label: {
                         Text(NSLocalizedString("Sign Out", comment: "Sign Out button label"))
                             .font(.custom(customFont, size: 17).bold())
                     }
+                    .alert("Please confirm sign out", isPresented: $showSignOutAlert, actions: {
+                        Button("OK", role: .cancel) {
+                            viewModel.signOut()
+                        }
+                        Button("Cancel", role: .none) {}
+                    })
                     .foregroundColor(.black)
                     .padding()
                     .background(Color.gray.opacity(0.1).cornerRadius(12))
@@ -74,12 +82,18 @@ struct ProfileScreen: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Button {
-                        viewModel.delete()
+                        showDeleteAlert = true
                     } label: {
                         Text(NSLocalizedString("Delete Account", comment: "Delete Account button label"))
                             .font(.custom(customFont, size: 17).bold())
                             .foregroundColor(.red)
                     }
+                    .alert("Please confirm profile deletion", isPresented: $showDeleteAlert, actions: {
+                        Button("OK", role: .cancel) {
+                            viewModel.delete()
+                        }
+                        Button("Cancel", role: .none) {}
+                    })
                     .foregroundColor(.black)
                     .padding()
                     .background(Color.gray.opacity(0.1).cornerRadius(12))
