@@ -51,7 +51,7 @@ struct ProductDetailScreen: View {
                 }, placeholder: {
                     ProgressView()
                 })
-                .matchedGeometryEffect(id: "\(product.id)\(sharedData.fromSearchScreen ? "SEARCH" : sharedData.fromMoreProductsScreen ? "MORE" : "IMAGE")", in: animation)
+                .matchedGeometryEffect(id: "\(product.id)\(sharedData.screen == .Home ? "HOME" : sharedData.screen == .Liked ? "LIKED" : sharedData.screen == .Cart ? "CART" : sharedData.screen == .Search ? "SEARCH" : "MORE")", in: animation)
                 
             }
             .frame(height: getRect().height/2.7)

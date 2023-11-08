@@ -150,7 +150,7 @@ struct HomeScreen: View {
                     }, placeholder: {
                         ProgressView()
                     })
-                    .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
+                    .matchedGeometryEffect(id: "\(product.id)HOME", in: animation)
                 }
             }
             .cornerRadius(25)
@@ -172,6 +172,7 @@ struct HomeScreen: View {
                 .cornerRadius(25))
         .onTapGesture {
             withAnimation(.easeInOut) {
+                sharedData.screen = .Home
                 sharedData.detailProduct = product
                 sharedData.showDetailProduct = true
             }

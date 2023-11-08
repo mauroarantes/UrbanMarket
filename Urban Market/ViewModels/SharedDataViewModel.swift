@@ -11,8 +11,7 @@ import CoreData
 class SharedDataViewModel: ObservableObject {
     @Published var detailProduct: Product?
     @Published var showDetailProduct: Bool = false
-    @Published var fromSearchScreen: Bool = false
-    @Published var fromMoreProductsScreen: Bool = false
+    @Published var screen: Screen = .Home
     @Published var likedProducts: [Product] = []
     @Published var cartProducts: [Product] = []
     

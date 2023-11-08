@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CartScreen: View {
     
+    var animation: Namespace.ID
+    
     @EnvironmentObject var sharedData: SharedDataViewModel
     
     @State var showDeleteOption: Bool = false
@@ -59,9 +61,10 @@ struct CartScreen: View {
                                             .padding(.trailing)
 
                                         }
-                                        CardView(product: $product)
+                                        CardView(animation: animation, product: $product)
                                             .onTapGesture {
                                                 withAnimation(.easeInOut) {
+                                                    sharedData.screen = .Cart
                                                     sharedData.detailProduct = product
                                                     sharedData.showDetailProduct = true
                                                 }
@@ -127,6 +130,8 @@ struct CartScreen: View {
 
 struct CardView: View {
     
+    var animation: Namespace.ID
+    
     @Binding var product: Product
     
     var body: some View {
@@ -139,6 +144,7 @@ struct CardView: View {
             }, placeholder: {
                 ProgressView()
             })
+            .matchedGeometryEffect(id: "\(product.id)CART", in: animation)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(product.title)
@@ -187,12 +193,5 @@ struct CardView: View {
         .padding(.vertical, 10)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.gray.opacity(0.1).cornerRadius(10))
-    }
-}
-
-struct CartScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        CartScreen()
-            .environmentObject(SharedDataViewModel())
     }
 }

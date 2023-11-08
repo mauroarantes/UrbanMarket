@@ -24,7 +24,7 @@ struct SearchScreen: View {
                         viewModel.searchActive = false
                     }
                     viewModel.searchText = ""
-                    sharedData.fromSearchScreen = false
+                    sharedData.screen = .Home
                 } label: {
                     Image(systemName: "arrow.left")
                         .font(.title2)
@@ -131,7 +131,7 @@ struct SearchScreen: View {
                 .cornerRadius(25))
         .onTapGesture {
             withAnimation(.easeInOut) {
-                sharedData.fromSearchScreen = true
+                sharedData.screen = .Search
                 sharedData.detailProduct = product
                 sharedData.showDetailProduct = true
             }

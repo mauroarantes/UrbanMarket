@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LikedScreen: View {
     
+    var animation: Namespace.ID
+    
     @EnvironmentObject var sharedData: SharedDataViewModel
     
     @State var showDeleteOption: Bool = false
@@ -61,6 +63,7 @@ struct LikedScreen: View {
                                     CardView(product: product)
                                         .onTapGesture {
                                             withAnimation(.easeInOut) {
+                                                sharedData.screen = .Liked
                                                 sharedData.detailProduct = product
                                                 sharedData.showDetailProduct = true
                                             }
@@ -94,6 +97,7 @@ struct LikedScreen: View {
             }, placeholder: {
                 ProgressView()
             })
+            .matchedGeometryEffect(id: "\(product.id)LIKED", in: animation)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(product.title)
@@ -122,12 +126,5 @@ struct LikedScreen: View {
                 sharedData.likedProducts.remove(at: index)
             }
         }
-    }
-}
-
-struct LikedScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        LikedScreen()
-            .environmentObject(SharedDataViewModel())
     }
 }

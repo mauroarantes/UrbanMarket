@@ -24,13 +24,13 @@ struct MainScreen: View {
                 HomeScreen(animation: animation)
                     .environmentObject(sharedData)
                     .tag(Tab.Home)
-                LikedScreen()
+                LikedScreen(animation: animation)
                     .environmentObject(sharedData)
                     .tag(Tab.Liked)
                 ProfileScreen()
                     .tag(Tab.Profile)
                     .environmentObject(viewModel)
-                CartScreen()
+                CartScreen(animation: animation)
                     .environmentObject(sharedData)
                     .tag(Tab.Cart)
             }
@@ -139,4 +139,12 @@ enum Tab: String, CaseIterable {
     case Liked = "Liked"
     case Profile = "Profile"
     case Cart = "Cart"
+}
+
+enum Screen: String {
+    case Home = "Home"
+    case Liked = "Liked"
+    case Cart = "Cart"
+    case Search = "Search"
+    case More = "More"
 }

@@ -90,7 +90,7 @@ struct MoreProductsScreen: View {
                 .cornerRadius(25))
         .onTapGesture {
             withAnimation(.easeInOut) {
-                sharedData.fromMoreProductsScreen = true
+                sharedData.screen = .More
                 sharedData.detailProduct = product
                 sharedData.showDetailProduct = true
             }
