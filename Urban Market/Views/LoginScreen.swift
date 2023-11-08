@@ -123,6 +123,9 @@ struct LoginScreen: View {
                             .font(.custom(customFont, size: 14).bold())
                             .foregroundColor(.orange)
                     }
+                    .alert(viewModel.registrationAlertString, isPresented: $viewModel.showRegistrationAlert, actions: {
+                        Button("OK", role: .cancel) {}
+                    })
                     .padding(.top, 8)
                     
                 }

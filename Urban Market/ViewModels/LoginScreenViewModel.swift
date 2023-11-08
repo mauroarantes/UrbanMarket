@@ -24,6 +24,8 @@ class LoginScreenViewModel: ObservableObject {
     @Published var registerUser: Bool = false
     @Published var showLoginAlert: Bool = false
     @Published var loginAlertString: String = ""
+    @Published var showRegistrationAlert: Bool = false
+    @Published var registrationAlertString: String = ""
     
     init(user: User) {
         self.currentUser = user
@@ -64,8 +66,17 @@ class LoginScreenViewModel: ObservableObject {
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             CoreDataManager.shared.resetCoreData()
             await fetchUser()
-        } catch {
-            print("DEBUG: Failed to create user with error: \(error.localizedDescription)")
+        } catch let error as NSError {
+            await MainActor.run {
+                switch error.code {
+                case 17008:
+                    loginAlertString = "The email is badly formatted."
+                default:
+                    loginAlertString = error.localizedDescription
+                }
+                showLoginAlert = true
+            }
+            print("DEBUG: Failed to log in with error: \(error)")
         }
     }
     
