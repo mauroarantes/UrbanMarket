@@ -22,6 +22,8 @@ class LoginScreenViewModel: ObservableObject {
     @Published var reEnterPassword: String = ""
     @Published var showReEnterPassword: Bool = false
     @Published var registerUser: Bool = false
+    @Published var showLoginAlert: Bool = false
+    @Published var loginAlertString: String = ""
     
     init(user: User) {
         self.currentUser = user
@@ -37,8 +39,19 @@ class LoginScreenViewModel: ObservableObject {
             self.userSession = result.user
             CoreDataManager.shared.resetCoreData()
             await fetchUser()
-        } catch {
-            print("DEBUG: Failed to log in with error: \(error.localizedDescription)")
+        } catch let error as NSError {
+            await MainActor.run {
+                switch error.code {
+                case 17008:
+                    loginAlertString = "The email is badly formatted."
+                case 17999:
+                    loginAlertString = "Invalid login credentials."
+                default:
+                    loginAlertString = error.localizedDescription
+                }
+                showLoginAlert = true
+            }
+            print("DEBUG: Failed to log in with error: \(error)")
         }
     }
     

@@ -104,6 +104,9 @@ struct LoginScreen: View {
                             .cornerRadius(15)
                             .shadow(color: .black.opacity(0.07), radius: 5, x: 5, y: 5)
                     }
+                    .alert(viewModel.loginAlertString, isPresented: $viewModel.showLoginAlert, actions: {
+                        Button("OK", role: .cancel) {}
+                    })
                     .disabled(viewModel.registerUser ? !isRegisterFormValid() : !formValid)
                     .opacity(viewModel.registerUser ? isRegisterFormValid() ? 1 : 0.5 : formValid ? 1 : 0.5)
                     .padding(.top, 25)
