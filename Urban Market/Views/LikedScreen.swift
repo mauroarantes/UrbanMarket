@@ -59,6 +59,12 @@ struct LikedScreen: View {
 
                                     }
                                     CardView(product: product)
+                                        .onTapGesture {
+                                            withAnimation(.easeInOut) {
+                                                sharedData.detailProduct = product
+                                                sharedData.showDetailProduct = true
+                                            }
+                                        }
                                 }
                             }
                         }
