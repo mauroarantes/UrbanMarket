@@ -48,7 +48,7 @@ struct CartScreen: View {
                             .padding()
                         } else {
                             VStack(spacing: 15) {
-                                ForEach(sharedData.cartProducts) { product in
+                                ForEach($sharedData.cartProducts) { $product in
                                     HStack(spacing: 0) {
                                         if showDeleteOption {
                                             Button {
@@ -61,7 +61,7 @@ struct CartScreen: View {
                                             .padding(.trailing)
 
                                         }
-                                        CardView(animation: animation, product: product)
+                                        CardView(animation: animation, product: $product)
                                             .environmentObject(sharedData)
                                             .onTapGesture {
                                                 withAnimation(.easeInOut) {
@@ -135,7 +135,9 @@ struct CardView: View {
     
     @EnvironmentObject var sharedData: SharedDataViewModel
     
-    @State var product: Product
+    @Binding var product: Product
+    
+    @State var quantity: Int = 1
     
     var body: some View {
         HStack(spacing: 15) {
@@ -177,6 +179,7 @@ struct CardView: View {
                         .foregroundColor(.gray)
                     Button {
                         product.quantity = (product.quantity > 0 ? product.quantity - 1 : 0)
+                        quantity = product.quantity
                     } label: {
                         Image(systemName: "minus")
                             .font(.caption)
@@ -186,12 +189,13 @@ struct CardView: View {
                             .cornerRadius(4)
                     }
                     
-                    Text("\(product.quantity)")
+                    Text("\(quantity)")
                         .font(.custom(customFont, size: 14))
                         .foregroundColor(.black)
                     
                     Button {
                         product.quantity += 1
+                        quantity = product.quantity
                     } label: {
                         Image(systemName: "plus")
                             .font(.caption)
