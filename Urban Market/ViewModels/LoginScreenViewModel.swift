@@ -45,9 +45,9 @@ class LoginScreenViewModel: ObservableObject {
             await MainActor.run {
                 switch error.code {
                 case 17008:
-                    loginAlertString = "The email is badly formatted."
+                    loginAlertString = NSLocalizedString("The email is badly formatted.", comment: "Login error alert")
                 case 17999:
-                    loginAlertString = "Invalid login credentials."
+                    loginAlertString = NSLocalizedString("Invalid login credentials.", comment: "Login error alert")
                 default:
                     loginAlertString = error.localizedDescription
                 }
@@ -70,7 +70,7 @@ class LoginScreenViewModel: ObservableObject {
             await MainActor.run {
                 switch error.code {
                 case 17008:
-                    loginAlertString = "The email is badly formatted."
+                    loginAlertString = NSLocalizedString("The email is badly formatted.", comment: "Login error alert")
                 default:
                     loginAlertString = error.localizedDescription
                 }

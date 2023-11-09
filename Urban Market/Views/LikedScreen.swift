@@ -106,7 +106,7 @@ struct LikedScreen: View {
                 Text(String(format: NSLocalizedString("£%@", comment: "Item price"), "\(product.price)"))
                     .font(.custom(customFont, size: 17).bold())
                     .foregroundColor(.orange)
-                Text(String(format: NSLocalizedString("Category: %@", comment: "Category label"), "\(product.category.capitalized)"))
+                Text(String(format: NSLocalizedString("Category: %@", comment: "Category label"), NSLocalizedString(product.category, comment: "Category button label").capitalized))
                     .font(.custom(customFont, size: 13))
                     .foregroundColor(.gray)
             }

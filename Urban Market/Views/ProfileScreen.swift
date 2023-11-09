@@ -68,11 +68,11 @@ struct ProfileScreen: View {
                         Text(NSLocalizedString("Sign Out", comment: "Sign Out button label"))
                             .font(.custom(customFont, size: 17).bold())
                     }
-                    .alert("Please confirm sign out", isPresented: $showSignOutAlert, actions: {
+                    .alert(NSLocalizedString("Please confirm sign out", comment: "Profile sign out/ delete confirmation"), isPresented: $showSignOutAlert, actions: {
                         Button("OK", role: .cancel) {
                             viewModel.signOut()
                         }
-                        Button("Cancel", role: .none) {}
+                        Button(NSLocalizedString("Cancel", comment: "Cancel button label"), role: .none) {}
                     })
                     .foregroundColor(.black)
                     .padding()
@@ -88,11 +88,11 @@ struct ProfileScreen: View {
                             .font(.custom(customFont, size: 17).bold())
                             .foregroundColor(.red)
                     }
-                    .alert("Please confirm profile deletion", isPresented: $showDeleteAlert, actions: {
+                    .alert(NSLocalizedString("Please confirm profile deletion", comment: "Profile sign out/ delete confirmation"), isPresented: $showDeleteAlert, actions: {
                         Button("OK", role: .cancel) {
                             viewModel.delete()
                         }
-                        Button("Cancel", role: .none) {}
+                        Button(NSLocalizedString("Cancel", comment: "Cancel button label"), role: .none) {}
                     })
                     .foregroundColor(.black)
                     .padding()

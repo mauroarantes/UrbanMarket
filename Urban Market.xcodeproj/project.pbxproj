@@ -90,6 +90,7 @@
 		06C67E582AE15ED800E9353B /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		06C67E5C2AE15F1C00E9353B /* Urban-Market-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Urban-Market-Info.plist"; sourceTree = SOURCE_ROOT; };
 		06C67E5D2AE15F9900E9353B /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		06C8487E2AFCEC3A007D2C7E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		06CB65952AE91CFA0065FE16 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		06CB65972AE91F230065FE16 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		06CB65992AE957E00065FE16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -340,6 +341,7 @@
 				en,
 				Base,
 				de,
+				"pt-BR",
 			);
 			mainGroup = 06C67E142AE13D8200E9353B;
 			packageReferences = (
@@ -453,6 +455,7 @@
 			children = (
 				06C5276D2AF5081700CFED75 /* en */,
 				06C527712AF51C8800CFED75 /* de */,
+				06C8487E2AFCEC3A007D2C7E /* pt-BR */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

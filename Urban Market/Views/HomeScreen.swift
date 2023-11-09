@@ -186,8 +186,7 @@ struct HomeScreen: View {
                 viewModel.productType = ProductType(rawValue: type) ?? .smartphones
             }
         } label: {
-            Text(type.capitalized)
-//            Text(ocalizedString(type, comment: "Category button label").capitalized)
+            Text(NSLocalizedString(type, comment: "Category button label").capitalized)
                 .foregroundColor(viewModel.productType.rawValue == type ? .orange : .gray)
                 .padding(.bottom, 10)
                 .overlay(

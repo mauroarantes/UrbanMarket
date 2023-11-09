@@ -157,7 +157,7 @@ struct CardView: View {
                 // Quantity buttons
                 
                 HStack(spacing: 10) {
-                    Text(NSLocalizedString("Quatity", comment: "Quantity"))
+                    Text(NSLocalizedString("Quantity", comment: "Quantity"))
                         .font(.custom(customFont, size: 14))
                         .foregroundColor(.gray)
                     Button {
