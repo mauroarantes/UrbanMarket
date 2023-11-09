@@ -13,7 +13,7 @@ struct LoginScreen: View {
     
     var body: some View {
         VStack {
-            Text("Welcome to the\nUrban Market")
+            Text(NSLocalizedString("Welcome to the\nUrban Market", comment: "Login screen labels"))
                 .font(.custom(customFont, size: 44).bold())
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -50,21 +50,21 @@ struct LoginScreen: View {
             ScrollView(.vertical, showsIndicators: false) {
                 // Login form
                 VStack(spacing: 15) {
-                    Text(viewModel.registerUser ? "Register" : "Login")
+                    Text(viewModel.registerUser ? NSLocalizedString("Register", comment: "Login screen labels") : NSLocalizedString("Login", comment: "Login screen labels"))
                         .font(.custom(customFont, size: 22).bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                     // Custom text field
                     if viewModel.registerUser {
-                        CustomTextField(icon: "person.fill", title: "Full Name", hint: "John Doe", value: $viewModel.currentUser.fullName, showPassword: .constant(false))
+                        CustomTextField(icon: "person.fill", title: NSLocalizedString("Full Name", comment: "Login screen labels"), hint: "John Doe", value: $viewModel.currentUser.fullName, showPassword: .constant(false))
                             .padding(.top, 30)
                     }
                     CustomTextField(icon: "envelope", title: "Email", hint: "youremail@service.com", value: $viewModel.currentUser.email, showPassword: .constant(false), capitalization: UITextAutocapitalizationType.none)
                         .padding(.top, 30)
-                    CustomTextField(icon: "lock", title: "Password", hint: "12345678", value: $viewModel.currentUser.password, showPassword: $viewModel.showPassword)
+                    CustomTextField(icon: "lock", title: NSLocalizedString("Password", comment: "Login screen labels"), hint: "12345678", value: $viewModel.currentUser.password, showPassword: $viewModel.showPassword)
                         .padding(.top, 10)
                     
                     if viewModel.registerUser {
-                        CustomTextField(icon: "lock", title: "Reenter Password", hint: "12345678", value: $viewModel.reEnterPassword, showPassword: $viewModel.showReEnterPassword)
+                        CustomTextField(icon: "lock", title: NSLocalizedString("Reenter Password", comment: "Login screen labels"), hint: "12345678", value: $viewModel.reEnterPassword, showPassword: $viewModel.showReEnterPassword)
                             .padding(.top, 30)
                     }
                     
@@ -74,10 +74,13 @@ struct LoginScreen: View {
                         Button {
                             viewModel.forgotPassword(email: viewModel.currentUser.email)
                         } label: {
-                            Text("Forgot password?")
+                            Text(NSLocalizedString("Forgot password?", comment: "Login screen labels"))
                                 .font(.custom(customFont, size: 14).bold())
                                 .foregroundColor(.orange)
                         }
+                        .alert(NSLocalizedString("A password reset link has been sent to your email", comment: "Login screen labels"), isPresented: $viewModel.showForgotAlert, actions: {
+                            Button("OK", role: .cancel) {}
+                        })
                         .padding(.top, 8)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -95,7 +98,7 @@ struct LoginScreen: View {
                             }
                         }
                     } label: {
-                        Text(viewModel.registerUser ? "Register" : "Login")
+                        Text(viewModel.registerUser ? NSLocalizedString("Register", comment: "Login screen labels") : NSLocalizedString("Login", comment: "Login screen labels"))
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 20)
                             .font(.custom(customFont, size: 17).bold())
@@ -119,7 +122,7 @@ struct LoginScreen: View {
                             viewModel.registerUser.toggle()
                         }
                     } label: {
-                        Text(viewModel.registerUser ? "Back to login" : "Create account")
+                        Text(viewModel.registerUser ? NSLocalizedString("Back to login", comment: "Login screen labels") : NSLocalizedString("Create account", comment: "Login screen labels"))
                             .font(.custom(customFont, size: 14).bold())
                             .foregroundColor(.orange)
                     }
@@ -149,7 +152,7 @@ struct LoginScreen: View {
             }
             .foregroundColor(.black.opacity(0.8))
             
-            if title.contains("Password"), !showPassword.wrappedValue {
+            if title.contains(NSLocalizedString("Password", comment: "Login screen labels")), !showPassword.wrappedValue {
                 SecureField(hint, text: value)
                     .padding(.top, 2)
                     .frame(height: 10)
@@ -165,15 +168,15 @@ struct LoginScreen: View {
         }
         .overlay(
             Group {
-                if title.contains("Password") {
+                if title.contains(NSLocalizedString("Password", comment: "Login screen labels")) {
                     Button {
                         showPassword.wrappedValue.toggle()
                     } label: {
-                        Text(showPassword.wrappedValue ? "Hide" : "Show")
+                        Text(showPassword.wrappedValue ? NSLocalizedString("Hide", comment: "Login screen labels") : NSLocalizedString("Show", comment: "Login screen labels"))
                             .font(.custom(customFont, size: 13).bold())
                             .foregroundColor(.orange)
-                            .offset(y: 8)
                     }
+                    .offset(y: 8)
                 }
             }
             , alignment: .trailing

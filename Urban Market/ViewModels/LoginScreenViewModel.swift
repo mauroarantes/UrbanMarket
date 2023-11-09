@@ -26,6 +26,7 @@ class LoginScreenViewModel: ObservableObject {
     @Published var loginAlertString: String = ""
     @Published var showRegistrationAlert: Bool = false
     @Published var registrationAlertString: String = ""
+    @Published var showForgotAlert: Bool = false
     
     init(user: User) {
         self.currentUser = user
@@ -90,6 +91,7 @@ class LoginScreenViewModel: ObservableObject {
     
     func forgotPassword(email: String) {
         Auth.auth().sendPasswordReset(withEmail: email)
+        showForgotAlert = true
     }
     
     func signOut() {

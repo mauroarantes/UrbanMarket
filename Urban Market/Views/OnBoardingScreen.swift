@@ -16,7 +16,7 @@ struct OnBoardingScreen: View {
     
     var body: some View {
         VStack {
-            Text("Find your\nGadget")
+            Text(NSLocalizedString("Find your\nGadget", comment: "On Boarding labels"))
                 .font(.custom(customFont, size: 55))
                 .fontWeight(.bold)
                 .foregroundColor(.orange)
@@ -31,7 +31,7 @@ struct OnBoardingScreen: View {
                     showLoginScreen = true
                 }
             } label: {
-                Text("Get started")
+                Text(NSLocalizedString("Get started", comment: "On Boarding labels"))
                     .font(.custom(customFont, size: 18))
                     .fontWeight(.semibold)
                     .padding(.vertical, 22)

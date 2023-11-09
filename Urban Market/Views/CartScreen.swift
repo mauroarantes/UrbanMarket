@@ -48,7 +48,7 @@ struct CartScreen: View {
                             .padding()
                         } else {
                             VStack(spacing: 15) {
-                                ForEach($sharedData.cartProducts) { $product in
+                                ForEach(sharedData.cartProducts) { product in
                                     HStack(spacing: 0) {
                                         if showDeleteOption {
                                             Button {
@@ -61,7 +61,7 @@ struct CartScreen: View {
                                             .padding(.trailing)
 
                                         }
-                                        CardView(animation: animation, product: $product)
+                                        CardView(animation: animation, product: product)
                                             .environmentObject(sharedData)
                                             .onTapGesture {
                                                 withAnimation(.easeInOut) {
@@ -135,7 +135,7 @@ struct CardView: View {
     
     @EnvironmentObject var sharedData: SharedDataViewModel
     
-    @Binding var product: Product
+    @State var product: Product
     
     var body: some View {
         HStack(spacing: 15) {
