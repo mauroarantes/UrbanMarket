@@ -89,15 +89,27 @@ struct LikedScreen: View {
     @ViewBuilder
     func CardView(product: Product) -> some View {
         HStack(spacing: 15) {
-            AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-            }, placeholder: {
-                ProgressView()
-            })
-            .matchedGeometryEffect(id: "\(product.id)LIKED", in: animation)
+            ZStack {
+                if sharedData.showDetailProduct {
+                    AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                } else {
+                    AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                    .matchedGeometryEffect(id: "\(product.id)LIKED", in: animation)
+                }
+            }
+            .frame(width: 100, height: 100)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(product.title)

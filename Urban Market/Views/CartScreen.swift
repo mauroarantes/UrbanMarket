@@ -62,6 +62,7 @@ struct CartScreen: View {
 
                                         }
                                         CardView(animation: animation, product: $product)
+                                            .environmentObject(sharedData)
                                             .onTapGesture {
                                                 withAnimation(.easeInOut) {
                                                     sharedData.screen = .Cart
@@ -132,19 +133,33 @@ struct CardView: View {
     
     var animation: Namespace.ID
     
+    @EnvironmentObject var sharedData: SharedDataViewModel
+    
     @Binding var product: Product
     
     var body: some View {
         HStack(spacing: 15) {
-            AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-            }, placeholder: {
-                ProgressView()
-            })
-            .matchedGeometryEffect(id: "\(product.id)CART", in: animation)
+            ZStack {
+                if sharedData.showDetailProduct {
+                    AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                } else {
+                    AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                    .matchedGeometryEffect(id: "\(product.id)CART", in: animation)
+                }
+            }
+            .frame(width: 100, height: 100)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(product.title)
