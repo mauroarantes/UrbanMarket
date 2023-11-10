@@ -133,33 +133,19 @@ struct CardView: View {
     
     var animation: Namespace.ID
     
-    @EnvironmentObject var sharedData: SharedDataViewModel
-    
     @Binding var product: Product
-    
-    @State var quantity: Int = 1
     
     var body: some View {
         HStack(spacing: 15) {
             ZStack {
-                if sharedData.showDetailProduct {
-                    AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    }, placeholder: {
-                        ProgressView()
-                    })
-                } else {
-                    AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    }, placeholder: {
-                        ProgressView()
-                    })
-                    .matchedGeometryEffect(id: "\(product.id)CART", in: animation)
-                }
+                AsyncImage(url: URL(string: product.images.first ?? ""), content: { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }, placeholder: {
+                    ProgressView()
+                })
+                .matchedGeometryEffect(id: "\(product.id)CART", in: animation)
             }
             .frame(width: 100, height: 100)
             
@@ -179,7 +165,6 @@ struct CardView: View {
                         .foregroundColor(.gray)
                     Button {
                         product.quantity = (product.quantity > 0 ? product.quantity - 1 : 0)
-                        quantity = product.quantity
                     } label: {
                         Image(systemName: "minus")
                             .font(.caption)
@@ -189,13 +174,12 @@ struct CardView: View {
                             .cornerRadius(4)
                     }
                     
-                    Text("\(quantity)")
+                    Text("\(product.quantity)")
                         .font(.custom(customFont, size: 14))
                         .foregroundColor(.black)
                     
                     Button {
                         product.quantity += 1
-                        quantity = product.quantity
                     } label: {
                         Image(systemName: "plus")
                             .font(.caption)
