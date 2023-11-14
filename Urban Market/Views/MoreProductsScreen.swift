@@ -101,7 +101,7 @@ struct MoreProductsScreen: View {
 struct MoreProductsScreen_Previews: PreviewProvider {
     static var previews: some View {
         MoreProductsScreen(animation: Namespace().wrappedValue)
-            .environmentObject(HomeScreenViewModel())
+            .environmentObject(HomeScreenViewModel(apiService: APIService()))
             .environmentObject(SharedDataViewModel())
     }
 }

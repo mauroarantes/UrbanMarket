@@ -13,14 +13,14 @@ struct HomeScreen: View {
     var animation: Namespace.ID
     
     @EnvironmentObject var sharedData: SharedDataViewModel
-    @StateObject var viewModel = HomeScreenViewModel()
+    @StateObject var viewModel = HomeScreenViewModel(apiService: APIService())
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             PullToRefresh(coordinateSpaceName: "pullToRefresh") {
                 print("Pulled to refresh")
                 viewModel.filteredProducts = []
-                viewModel.getProducts()
+                viewModel.apiCall()
             }
             VStack(spacing: 15) {
                 // Search bar

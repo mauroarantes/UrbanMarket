@@ -9,28 +9,37 @@ import XCTest
 @testable import Urban_Market
 
 class Urban_MarketTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    var sut: HomeScreenViewModel?
+    
+    override func setUp() {
+        super.setUp()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        super.tearDown()
+        sut = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testApiCall_isSuccess() {
+        //given
+        sut = HomeScreenViewModel(apiService: MockAPIService(fileName: "MockResponse"))
+        //when
+        sut?.apiCall()
+        //then
+        XCTAssertEqual(sut?.products.count, 100)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testApiCall_isFailure() {
+        let expetation = XCTestExpectation(description: "Fetching Products list")
+        let waitDuration = 3.0
+        sut = HomeScreenViewModel(apiService: MockAPIService(fileName: "Error"))
+        sut?.apiCall()
+        DispatchQueue.main.asyncAfter(deadline: .now() + waitDuration){
+            XCTAssertEqual(self.sut?.products.count, 0)
+            XCTAssertEqual(self.sut?.customError, NetworkError.dataNotFound)
+            expetation.fulfill()
         }
+        wait(for: [expetation], timeout: waitDuration)
     }
-
 }

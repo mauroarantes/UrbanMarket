@@ -10,7 +10,12 @@
 		060F30302AE1622D004B1120 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060F302F2AE1622D004B1120 /* OnBoardingScreen.swift */; };
 		060F30342AE17C2F004B1120 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060F30332AE17C2F004B1120 /* MainScreen.swift */; };
 		064F3F282AFA49BE002F0B1F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064F3F272AFA49BE002F0B1F /* CoreDataManager.swift */; };
+		069A02C72B0288350074059C /* MockResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 06A544512B02851B00BE1174 /* MockResponse.json */; };
 		06A3EB112AEFCD550098B1DF /* CartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3EB102AEFCD550098B1DF /* CartScreen.swift */; };
+		06A5444C2B027E2000BE1174 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5444B2B027E2000BE1174 /* APIService.swift */; };
+		06A5444E2B02837C00BE1174 /* NetwrokError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5444D2B02837C00BE1174 /* NetwrokError.swift */; };
+		06A544502B0284C800BE1174 /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5444F2B0284C800BE1174 /* MockAPIService.swift */; };
+		06A544522B02851B00BE1174 /* MockResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 06A544512B02851B00BE1174 /* MockResponse.json */; };
 		06C284322AE6D51A006F5422 /* MoreProductsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C284312AE6D51A006F5422 /* MoreProductsScreen.swift */; };
 		06C284342AE7CA99006F5422 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C284332AE7CA99006F5422 /* SearchScreen.swift */; };
 		06C284362AE7D3A0006F5422 /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C284352AE7D3A0006F5422 /* StaggeredGrid.swift */; };
@@ -65,6 +70,10 @@
 		060F30332AE17C2F004B1120 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		064F3F272AFA49BE002F0B1F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		06A3EB102AEFCD550098B1DF /* CartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreen.swift; sourceTree = "<group>"; };
+		06A5444B2B027E2000BE1174 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		06A5444D2B02837C00BE1174 /* NetwrokError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwrokError.swift; sourceTree = "<group>"; };
+		06A5444F2B0284C800BE1174 /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
+		06A544512B02851B00BE1174 /* MockResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponse.json; sourceTree = "<group>"; };
 		06C284312AE6D51A006F5422 /* MoreProductsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProductsScreen.swift; sourceTree = "<group>"; };
 		06C284332AE7CA99006F5422 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		06C284352AE7D3A0006F5422 /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
@@ -156,6 +165,15 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		06A5444A2B027E0700BE1174 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				06A5444B2B027E2000BE1174 /* APIService.swift */,
+				06A5444D2B02837C00BE1174 /* NetwrokError.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		06C67E142AE13D8200E9353B = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +197,7 @@
 		06C67E1F2AE13D8200E9353B /* Urban Market */ = {
 			isa = PBXGroup;
 			children = (
+				06A5444A2B027E0700BE1174 /* Services */,
 				064F3F262AFA49A5002F0B1F /* CoreData */,
 				06C67E552AE15E6F00E9353B /* Fonts */,
 				06C67E4F2AE141A500E9353B /* Models */,
@@ -206,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				06C67E362AE13D8300E9353B /* Urban_MarketTests.swift */,
+				06A5444F2B0284C800BE1174 /* MockAPIService.swift */,
+				06A544512B02851B00BE1174 /* MockResponse.json */,
 			);
 			path = "Urban MarketTests";
 			sourceTree = "<group>";
@@ -363,6 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				069A02C72B0288350074059C /* MockResponse.json in Resources */,
 				06C67E282AE13D8300E9353B /* Preview Assets.xcassets in Resources */,
 				06C67E252AE13D8300E9353B /* Assets.xcassets in Resources */,
 				06C67E5A2AE15ED800E9353B /* Raleway-Regular.ttf in Resources */,
@@ -377,6 +399,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A544522B02851B00BE1174 /* MockResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06C2843A2AE80B79006F5422 /* LoginScreen.swift in Sources */,
+				06A5444C2B027E2000BE1174 /* APIService.swift in Sources */,
 				060F30342AE17C2F004B1120 /* MainScreen.swift in Sources */,
 				06C284342AE7CA99006F5422 /* SearchScreen.swift in Sources */,
 				06C284382AE80A76006F5422 /* LoginScreenViewModel.swift in Sources */,
@@ -406,6 +430,7 @@
 				06CC5ADD2AEAA4D7007A064A /* SharedDataViewModel.swift in Sources */,
 				06C284322AE6D51A006F5422 /* MoreProductsScreen.swift in Sources */,
 				064F3F282AFA49BE002F0B1F /* CoreDataManager.swift in Sources */,
+				06A5444E2B02837C00BE1174 /* NetwrokError.swift in Sources */,
 				06C67E212AE13D8200E9353B /* Urban_MarketApp.swift in Sources */,
 				06C67E512AE142F600E9353B /* ProductModel.swift in Sources */,
 				06CC5ADF2AEAA61D007A064A /* ProductDetailScreen.swift in Sources */,
@@ -421,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A544502B0284C800BE1174 /* MockAPIService.swift in Sources */,
 				06C67E372AE13D8300E9353B /* Urban_MarketTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

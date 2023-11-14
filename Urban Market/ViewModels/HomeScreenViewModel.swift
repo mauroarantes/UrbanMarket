@@ -10,6 +10,7 @@ import Combine
 
 class HomeScreenViewModel: ObservableObject {
     
+    var apiService: APIServiceProtocol
     var cancellables = Set<AnyCancellable>()
     var searchCancellable: AnyCancellable?
     
@@ -20,9 +21,11 @@ class HomeScreenViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var searchActive = false
     @Published var searchedProducts: [Product]?
+    @Published var customError: NetworkError?
     
-    init() {
-        getProducts()
+    init(apiService: APIServiceProtocol) {
+        self.apiService = apiService
+        apiCall()
         searchCancellable = $searchText.removeDuplicates()
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink(receiveValue: { str in
@@ -34,28 +37,36 @@ class HomeScreenViewModel: ObservableObject {
             })
     }
     
-    func getProducts() {
+    func apiCall() {
         
-        guard let url = URL(string: "https://dummyjson.com/products/?limit=0") else { return }
+        guard let url = URL(string: "https://dummyjson.com/products/?limit=0") else {
+            self.customError = NetworkError.invalidURL
+            return
+        }
         
-        URLSession.shared.dataTaskPublisher(for: url)
+        apiService.getProducts(url: url)
             .subscribe(on: DispatchQueue.global(qos: .background))
-            .receive(on: DispatchQueue.main)
-            .tryMap { (data, response) -> Data in
-                guard let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
-                    throw URLError(.badServerResponse)
-                }
-                return data
-            }
-            .decode(type: ProductModel.self, decoder: JSONDecoder())
             .sink { completion in
-                print("COMPLETION: \(completion)")
+                switch completion{
+                case .failure(let error):
+                    switch error {
+                    case is URLError:
+                        self.customError = NetworkError.invalidURL
+                    case NetworkError.dataNotFound:
+                        self.customError = NetworkError.dataNotFound
+                    case NetworkError.parsingError:
+                        self.customError = NetworkError.parsingError
+                    default:
+                        self.customError = NetworkError.dataNotFound
+                    }
+                case .finished:
+                    print("COMPLETION: \(completion)")
+                }
             } receiveValue: { [weak self] productModel in
                 self?.products = productModel.products
                 self?.filterProductsByType()
             }
             .store(in: &cancellables)
-
     }
     
     func filterProductsByType() {
