@@ -26,7 +26,7 @@ class SharedDataViewModel: ObservableObject {
             CoreDataManager.shared.persistentCartProducts = try CoreDataManager.shared.context.fetch(request)
             CoreDataManager.shared.persistentCartProducts.forEach { cartProduct in
                 if let title = cartProduct.title, let description = cartProduct.productDescription, let brand = cartProduct.brand, let category = cartProduct.category, let image = cartProduct.image {
-                    let newProduct = Product(id: Int(cartProduct.id), title: title, description: description, price: Int(cartProduct.price), brand: brand, category: category, images: [image])
+                    let newProduct = Product(id: Int(cartProduct.id), title: title, description: description, price: Double(cartProduct.price), brand: brand, category: category, images: [image])
                     cartProducts.append(newProduct)
                 }
             }
@@ -68,7 +68,7 @@ class SharedDataViewModel: ObservableObject {
             CoreDataManager.shared.persistentLikedProducts = try CoreDataManager.shared.context.fetch(request)
             CoreDataManager.shared.persistentLikedProducts.forEach { likedProduct in
                 if let title = likedProduct.title, let description = likedProduct.productDescription, let brand = likedProduct.brand, let category = likedProduct.category, let image = likedProduct.image {
-                    let newProduct = Product(id: Int(likedProduct.id), title: title, description: description, price: Int(likedProduct.price), brand: brand, category: category, images: [image])
+                    let newProduct = Product(id: Int(likedProduct.id), title: title, description: description, price: Double(likedProduct.price), brand: brand, category: category, images: [image])
                     likedProducts.append(newProduct)
                 }
             }
@@ -105,10 +105,10 @@ class SharedDataViewModel: ObservableObject {
     }
     
     func getTotalPrice() -> String {
-        var total: Int = 0
+        var total: Double = 0
         
         cartProducts.forEach { product in
-            let productTotal = product.quantity * product.price
+            let productTotal = Double(product.quantity) * product.price
             total += productTotal
         }
          return String(format: NSLocalizedString("£%@", comment: "Item price"), "\(total)")

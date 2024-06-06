@@ -34,15 +34,15 @@ struct MoreProductsScreen: View {
             
             // Filter Results
             
-            if let products = viewModel.filteredProducts {
+//            if let products = viewModel.filteredProducts {
                 ScrollView(.vertical, showsIndicators: false) {
-                    StaggeredGrid(columns: 2, spacing: 20, list: products) { product in
+                    StaggeredGrid(columns: 2, spacing: 20, list: viewModel.filteredProducts) { product in
                         // Card View
                         ProductCardView(product: product)
                     }
                     .padding()
                 }
-            }
+//            }
         }
         .background(Color.white.ignoresSafeArea())
     }
@@ -76,7 +76,7 @@ struct MoreProductsScreen: View {
             Text(product.title)
                 .font(.custom(customFont, size: 18))
                 .padding(.top)
-            Text(product.brand)
+            Text(product.brand ?? "No brand")
                 .font(.custom(customFont, size: 14))
                 .foregroundColor(.gray)
             Text(String(format: NSLocalizedString("£%@", comment: "Item price"), "\(product.price)")).bold()

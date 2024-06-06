@@ -17,8 +17,9 @@ struct ProductModel: Codable {
 struct Product: Codable, Identifiable, Hashable {
     let id: Int
     let title, description: String
-    let price: Int
-    let brand, category: String
+    let price: Double
+    let brand: String?
+    let category: String
     let images: [String]
     var quantity: Int = 1
     
@@ -29,11 +30,14 @@ struct Product: Codable, Identifiable, Hashable {
 
 enum ProductType: String, CaseIterable, Codable {
     case smartphones = "smartphones"
+    case mobileAccessories = "mobile-accessories"
     case laptops = "laptops"
+    case tablets = "tablets"
     case groceries = "groceries"
     case homeDecoration = "home-decoration"
+    case beauty = "beauty"
     case fragances = "fragrances"
-    case skincare = "skincare"
+    case skinCare = "skin-care"
     case furniture = "furniture"
     case tops = "tops"
     case womensDresses = "womens-dresses"
@@ -41,11 +45,12 @@ enum ProductType: String, CaseIterable, Codable {
     case mensShirts = "mens-shirts"
     case mensShoes = "mens-shoes"
     case mensWatches = "mens-watches"
+    case sportsAccessories = "sports-accessories"
     case womensWatches = "womens-watches"
     case womensBags = "womens-bags"
     case womensJewellery = "womens-jewellery"
     case sunglasses = "sunglasses"
-    case automotive = "automotive"
+    case automotive = "vehicle"
     case motorcycle = "motorcycle"
-    case lighting = "lighting"
+    case kitchenAccessories = "kitchen-accessories"
 }

@@ -27,7 +27,7 @@ class Urban_MarketTests: XCTestCase {
         //when
         sut?.apiCall()
         //then
-        XCTAssertEqual(sut?.products.count, 100)
+        XCTAssertEqual(sut?.products.count, 194)
     }
     
     func testApiCall_isFailure() {

@@ -158,7 +158,7 @@ struct HomeScreen: View {
             Text(product.title)
                 .font(.custom(customFont, size: 18))
                 .padding(.top)
-            Text(product.brand)
+            Text(product.brand ?? "No brand")
                 .font(.custom(customFont, size: 14))
                 .foregroundColor(.gray)
             Text(String(format: NSLocalizedString("£%@", comment: "Item price"), "\(product.price)")).bold()

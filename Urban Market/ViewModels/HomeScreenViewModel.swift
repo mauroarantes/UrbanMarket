@@ -44,7 +44,7 @@ class HomeScreenViewModel: ObservableObject {
             return
         }
         
-        apiService.getProducts(url: url)
+        apiService.getProducts(url: url, type: ProductModel.self)
             .subscribe(on: DispatchQueue.global(qos: .background))
             .sink { completion in
                 switch completion{
@@ -65,6 +65,7 @@ class HomeScreenViewModel: ObservableObject {
             } receiveValue: { [weak self] productModel in
                 self?.products = productModel.products
                 self?.filterProductsByType()
+                print(self?.products.count)
             }
             .store(in: &cancellables)
     }
@@ -99,3 +100,16 @@ class HomeScreenViewModel: ObservableObject {
         }
     }
 }
+//extension Product {
+//    convenience init?(_ product: RawProduct?) {
+//        guard let id = product?.id,
+//              let title = product?.title,
+//              let description = product?.description,
+//              let price = product?.price,
+//              let category = product?.category,
+//              let images = product?.images else {
+//            return nil
+//        }
+//        self.init(id: id, title: title, description: description, price: price, brand: product?.brand ?? "UAI3", category: category, images: images)
+//    }
+//}
