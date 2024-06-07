@@ -44,7 +44,7 @@ class HomeScreenViewModel: ObservableObject {
             return
         }
         
-        apiService.getProducts(url: url, type: ProductModel.self)
+        apiService.getProducts(url: url)
             .subscribe(on: DispatchQueue.global(qos: .background))
             .sink { completion in
                 switch completion{
@@ -62,10 +62,9 @@ class HomeScreenViewModel: ObservableObject {
                 case .finished:
                     print("COMPLETION: \(completion)")
                 }
-            } receiveValue: { [weak self] productModel in
+            } receiveValue: { [weak self] (productModel: ProductModel) in
                 self?.products = productModel.products
                 self?.filterProductsByType()
-                print(self?.products.count)
             }
             .store(in: &cancellables)
     }

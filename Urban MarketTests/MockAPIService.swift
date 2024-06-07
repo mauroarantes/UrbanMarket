@@ -17,12 +17,12 @@ class MockAPIService: APIServiceProtocol {
         self.fileName = fileName
     }
     
-    func getProducts<T>(url: URL, type: T.Type) -> AnyPublisher<T, Error> where T : Decodable {
+    func getProducts<T>(url: URL) -> AnyPublisher<T, Error> where T : Decodable {
         if let path = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {
                 let data = try Data(contentsOf: path)
                 let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(type.self, from: data)
+                let jsonData = try decoder.decode(T.self, from: data)
                 return Just(jsonData)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()

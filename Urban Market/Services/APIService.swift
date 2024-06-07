@@ -9,12 +9,12 @@ import Foundation
 import Combine
 
 protocol APIServiceProtocol {
-    func getProducts<T: Decodable>(url: URL, type: T.Type) -> AnyPublisher<T, Error>
+    func getProducts<T: Decodable>(url: URL) -> AnyPublisher<T, Error>
 }
 
 class APIService: APIServiceProtocol {
     
-    func getProducts<T: Decodable>(url: URL, type: T.Type) -> AnyPublisher<T, Error> {
+    func getProducts<T: Decodable>(url: URL) -> AnyPublisher<T, Error> {
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { (data, response) -> Data in
                 guard let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
@@ -34,7 +34,7 @@ class APIService: APIServiceProtocol {
                     return NetworkError.dataNotFound
                 }
             }
-            .decode(type: type.self, decoder: JSONDecoder())
+            .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
