@@ -10,7 +10,6 @@ import Combine
 
 class HomeScreenViewModel: ObservableObject {
     //testCommentTony
-    var apiString: String?
     var apiService: APIServiceProtocol
     var cancellables = Set<AnyCancellable>()
     var searchCancellable: AnyCancellable?
