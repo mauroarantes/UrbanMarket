@@ -245,6 +245,7 @@ struct PullToRefresh: View {
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         MainScreen()
+            .environmentObject(LoginScreenViewModel(user: User(id: "ID", fullName: "FN", email: "EM", password: "PW")))
     }
 }
 
